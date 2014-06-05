@@ -17,6 +17,10 @@ import model.Model;
 
 public class ExportAction implements Action {
 	private String downloadPath;
+	
+	private boolean compressed = false;
+	
+	private boolean downloaded = false;
 
 	public ExportAction(Model model) {
 		downloadPath = model.getDownloadPath();
@@ -27,10 +31,10 @@ public class ExportAction implements Action {
 			HttpServletResponse response) throws IOException {
 		String dirName = downloadPath + request.getSession().getId();
 		File dir = new File(dirName);
-		File[] files = new File(dirName).listFiles();
+		File[] files = dir.listFiles();
 		String zipFileName = "privacy_form.zip";
 		ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(
-				new File(dirName, zipFileName)));
+				new File(dir, zipFileName)));
 		ZipEntry ze = null;
 		int buffer_size = 4096;
 		byte[] buf = new byte[buffer_size];
