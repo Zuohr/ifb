@@ -1,17 +1,26 @@
 package control;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import test.JsonBean;
 import action.Action;
 import action.ActionMap;
+
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class Controller
@@ -20,6 +29,8 @@ import action.ActionMap;
 public class Controller extends HttpServlet {
 	private ActionMap actions;
 	private final String jspPath = "/WEB-INF/";
+
+	private volatile long currFileID = 1l;
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,9 +57,53 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String nextStep;
-		nextStep = processRequest(request);
-		proceedToNext(nextStep, request, response);
+		// String nextStep;
+		// nextStep = processRequest(request);
+		// proceedToNext(nextStep, request, response);
+
+		// request.getRequestDispatcher(jspPath + "output.jsp").forward(request,
+		// response);
+
+		String[] vals = request.getParameterValues("select");
+		JsonBean jb = new JsonBean();
+		if (vals != null) {
+			jb.vals = vals;
+			Gson json = new Gson();
+			String json_str = json.toJson(jb);
+			request.setAttribute("json", json_str);
+
+			File file = new File("/Users/hidarikouzen/git/ifb/ifb/json");
+			PrintWriter pw = new PrintWriter(new FileWriter(file));
+			pw.print(json_str);
+			pw.close();
+
+			file = new File("/Users/hidarikouzen/git/ifb/ifb/json");
+			response.setContentType("application/octet-stream");
+			response.setContentLength(new Long(file.length()).intValue());
+			response.addHeader("Content-Disposition", "attachment; filename="
+					+ "json");
+
+			ServletOutputStream servletOutputStream = response
+					.getOutputStream();
+			FileInputStream fileInputStream = new FileInputStream(file);
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(
+					fileInputStream);
+			int size = -1;
+			byte[] b = new byte[4096];
+			while ((size = bufferedInputStream.read(b)) != -1) {
+				servletOutputStream.write(b, 0, size);
+			}
+			servletOutputStream.flush();
+			servletOutputStream.close();
+			bufferedInputStream.close();
+			
+		}
+
+		// for (String str : vals) {
+		// System.out.println(str);
+		// }
+		// request.getRequestDispatcher(jspPath + "test.jsp").forward(request,
+		// response);
 	}
 
 	private String processRequest(HttpServletRequest request) {
