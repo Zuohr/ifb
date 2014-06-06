@@ -537,12 +537,13 @@ document.getElementById('state_law').value=obj.state_law;
 							<select id="opt_scheme" name="opt_scheme" required="required"
 								title="Choose Multiple Schemes."  multiple
 								style="width: 350px;" >
-								<option value="choose">Choose Schemes..</option>
-								<option value="Phone">Phone</option>
-								<option value="e-mail">Email</option>
-								<option value="Postal">Postal</option>
+								<option>Choose Schemes..</option>
+								<option value="phone">Phone</option>
+								<option value="email">Email</option>
+								<option value="online">Online</option>
+								<option value="mail">Mail</option>
 								<option value="DNT">Do Not Track</option>
-								<option value="Cookies">Cookies</option>
+								<option value="cookies">Cookies</option>
 							</select>   
 							
 							<label for="opt_num_days">Number of days begin to share &nbsp; <span
@@ -563,6 +564,7 @@ document.getElementById('state_law').value=obj.state_law;
 							</label> 
 							<input required="required" type="text" id="opt_web" name="opt_web"> 
 							
+							
 								
 							<label for="country">Provide joint accountholders the choice to opt 
 								out for only one accountholder &nbsp; <span style="display: inline;" class="bp-icon bp-icon-about"
@@ -572,7 +574,51 @@ document.getElementById('state_law').value=obj.state_law;
 								  a joint account, your choice(s) will apply to everyone on your account unless you mark below."></span>
 							</label> 
 							<select required="required" id="joint_acct" name="joint_acct">
-								<option value="choose">Choose an Option..</option>
+								<option>Choose an Option..</option>
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+							</select>
+							
+							<label for="first_name">Does the institution shares personal information pursuant to section 603(d)(2)(A)(iii) of the FCRA?
+							<span style="display: inline;" class="bp-icon bp-icon-about" data-content='If the answer is yes it must include in the mail-in opt-out form the following statement: "Do not share information about my creditworthiness with your affiliates for their everyday business purposes."'></span>
+							</label>
+							<select id="mail_opt_out_1" name="mail_opt_out_1" required="required"
+								title="Choose yes or no" style="width: 350px;" >
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+							</select>
+							
+							<label for="first_name">Does the institution incorporates section 624 of the FCRA in accord with paragraph C.2(d)(6) of these Instructions?
+							<span style="display: inline;" class="bp-icon bp-icon-about" data-content='If the answer is yes it must include in the mail-in opt-out form the following statement: " Do not allow your affiliates to use my personal information to market to me."'></span>
+							</label>
+							<select id="mail_opt_out_2" name="mail_opt_out_2" required="required" title="Choose yes or no" style="width: 350px;" >
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+							</select>
+							
+							<label for="first_name">Does the financial institution shares personal information pursuant to § 313.10(a) of Financial Privacy Rule?
+							<span style="display: inline;" class="bp-icon bp-icon-about" data-content='If the answer is yes it must include in the mail-in opt-out form the following statement: "Do not share my personal information with nonaffiliates to market their products and services to me."'></span>
+							</label>
+							<select id="mail_opt_out_3" name="mail_opt_out_3" required="required"
+								title="Choose yes or no" style="width: 350px;" >
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+							</select>
+							
+							<label for="first_name">Does the institutions use the disclosure table to provide opt-out options beyond those required by Federal law?
+							<span style="display: inline;" class="bp-icon bp-icon-about" data-content='A financial institution that chooses to offer an opt-out for its own marketing in the mail- in opt-out form must include one of the two following tatements: "Do not share my personal information to market to me." or "Do not use my personal information to market to me."'></span>
+							</label>
+							<select id="mail_opt_out_4" name="mail_opt_out_4" required="required"
+								title="Choose yes or no" style="width: 350px;" >
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+							</select>
+							
+							<label for="first_name">Does the institution chooses to offer an opt-out for joint marketing?
+							<span style="display: inline;" class="bp-icon bp-icon-about" data-content='A financial institution that chooses to offer an opt-out for joint marketing must include the following statement: "Do not share my personal information with other financial institutions to jointly market to me."'></span>
+							</label>
+							<select id="mail_opt_out_5" name="mail_opt_out_5" required="required"
+								title="Choose yes or no" style="width: 350px;" >
 								<option value="yes">Yes</option>
 								<option value="no">No</option>
 							</select>

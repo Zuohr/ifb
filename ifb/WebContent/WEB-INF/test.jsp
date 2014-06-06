@@ -8,7 +8,6 @@
 </head>
 <body>
 	<h1>hello</h1>
-	${vals["0"]}
-	${json }
+	${attr }
 </body>
 </html>

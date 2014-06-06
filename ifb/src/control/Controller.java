@@ -1,5 +1,7 @@
 package control;
 
+import io.CharArrayWriterResponse;
+
 import java.io.IOException;
 
 import javax.servlet.Servlet;
@@ -53,8 +55,8 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		 String nextStep;
-		 try {
+		String nextStep;
+		try {
 			nextStep = processRequest(request, response);
 			proceedToNext(nextStep, request, response);
 		} catch (Exception e) {
@@ -64,40 +66,40 @@ public class Controller extends HttpServlet {
 		// request.getRequestDispatcher(jspPath + "output.jsp").forward(request,
 		// response);
 
-//		String[] vals = request.getParameterValues("select");
-//		JsonBean jb = new JsonBean();
-//		if (vals != null) {
-//			jb.vals = vals;
-//			Gson json = new Gson();
-//			String json_str = json.toJson(jb);
-//			request.setAttribute("json", json_str);
-//
-//			File file = new File("/Users/hidarikouzen/git/ifb/ifb/json");
-//			PrintWriter pw = new PrintWriter(new FileWriter(file));
-//			pw.print(json_str);
-//			pw.close();
-//
-//			file = new File("/Users/hidarikouzen/git/ifb/ifb/json");
-//			response.setContentType("application/octet-stream");
-//			response.setContentLength(new Long(file.length()).intValue());
-//			response.addHeader("Content-Disposition", "attachment; filename="
-//					+ "json");
-//
-//			ServletOutputStream servletOutputStream = response
-//					.getOutputStream();
-//			FileInputStream fileInputStream = new FileInputStream(file);
-//			BufferedInputStream bufferedInputStream = new BufferedInputStream(
-//					fileInputStream);
-//			int size = -1;
-//			byte[] b = new byte[4096];
-//			while ((size = bufferedInputStream.read(b)) != -1) {
-//				servletOutputStream.write(b, 0, size);
-//			}
-//			servletOutputStream.flush();
-//			servletOutputStream.close();
-//			bufferedInputStream.close();
-//
-//		}
+		// String[] vals = request.getParameterValues("select");
+		// JsonBean jb = new JsonBean();
+		// if (vals != null) {
+		// jb.vals = vals;
+		// Gson json = new Gson();
+		// String json_str = json.toJson(jb);
+		// request.setAttribute("json", json_str);
+		//
+		// File file = new File("/Users/hidarikouzen/git/ifb/ifb/json");
+		// PrintWriter pw = new PrintWriter(new FileWriter(file));
+		// pw.print(json_str);
+		// pw.close();
+		//
+		// file = new File("/Users/hidarikouzen/git/ifb/ifb/json");
+		// response.setContentType("application/octet-stream");
+		// response.setContentLength(new Long(file.length()).intValue());
+		// response.addHeader("Content-Disposition", "attachment; filename="
+		// + "json");
+		//
+		// ServletOutputStream servletOutputStream = response
+		// .getOutputStream();
+		// FileInputStream fileInputStream = new FileInputStream(file);
+		// BufferedInputStream bufferedInputStream = new BufferedInputStream(
+		// fileInputStream);
+		// int size = -1;
+		// byte[] b = new byte[4096];
+		// while ((size = bufferedInputStream.read(b)) != -1) {
+		// servletOutputStream.write(b, 0, size);
+		// }
+		// servletOutputStream.flush();
+		// servletOutputStream.close();
+		// bufferedInputStream.close();
+		//
+		// }
 
 		// for (String str : vals) {
 		// System.out.println(str);
@@ -122,8 +124,11 @@ public class Controller extends HttpServlet {
 		if (nextStep.isEmpty()) {
 			return;
 		} else if (nextStep.endsWith(".jsp")) {
-			request.getRequestDispatcher(jspPath + nextStep).forward(request,
+			CharArrayWriterResponse customResponse = new CharArrayWriterResponse(
 					response);
+			request.getRequestDispatcher(jspPath + nextStep).forward(request,
+					customResponse);
+			System.out.println(customResponse.getOutput());
 		} else if ("404".equals(nextStep)) {
 			response.sendError(404);
 		} else {
