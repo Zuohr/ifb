@@ -4,10 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Privacy notice</title>
-<link rel="stylesheet" type="text/css" href="css/pbi-web-ps-jawr.css"
-	media="all" />
-<link rel="stylesheet" type="text/css"
-	href="css/pbi-web-ps-jawr-print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="css/pbi-web-ps-jawr.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/pbi-web-ps-jawr-print.css" media="print" />
 </head>
 
 <body>

@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -29,6 +31,10 @@ public class GenerateAction implements Action {
 	@Override
 	public String perform(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		if (!"Send your data".equals(request.getParameter("submit_button"))) {
+			return "";
+		}
+
 		File targetDir = new File(downloadPath + request.getSession().getId());
 		if (targetDir.exists()) {
 			for (File file : targetDir.listFiles()) {
@@ -39,13 +45,35 @@ public class GenerateAction implements Action {
 		}
 		targetDir.mkdir();
 		PrintWriter pw = new PrintWriter(new FileWriter(new File(targetDir,
-				"test.html")));
-		pw.println("hello");
-		pw.close();
+				"privacy_notice.html")));
 
-		pw = new PrintWriter(new FileWriter(new File(targetDir, "test.json")));
-		Gson json = new Gson();
-		pw.print(json.toJson(new JsonData()));
+		pw.print("<!DOCTYPE html><html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><title>Privacy notice</title><link rel=\"stylesheet\" type=\"text/css\" href=\"css/pbi-web-ps-jawr.css\" media=\"all\" /><link rel=\"stylesheet\" type=\"text/css\" href=\"css/pbi-web-ps-jawr-print.css\" media=\"print\" /></head>");
+
+		JsonData json = new JsonData();
+		json.fname = request.getParameter("fname");
+		json.rev_date = "Rev. June 2014";
+
+		// File targetDir = new File(downloadPath +
+		// request.getSession().getId());
+		// if (targetDir.exists()) {
+		// for (File file : targetDir.listFiles()) {
+		// file.delete();
+		// }
+		// targetDir.delete();
+		// targetDir = new File(downloadPath + request.getSession().getId());
+		// }
+		// targetDir.mkdir();
+		// PrintWriter pw = new PrintWriter(new FileWriter(new File(targetDir,
+		// "test.html")));
+		// pw.println("hello");
+		// pw.close();
+		//
+		// pw = new PrintWriter(new FileWriter(new File(targetDir,
+		// "test.json")));
+		// Gson json = new Gson();
+		// pw.print(json.toJson(new JsonData()));
+		// pw.close();
+
 		pw.close();
 
 		compress(request);
@@ -94,6 +122,10 @@ public class GenerateAction implements Action {
 				ret = real.getName() + "/" + ret;
 		}
 		return ret;
+	}
+
+	private void write(String text) {
+
 	}
 
 	@Override
