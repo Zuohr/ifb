@@ -986,6 +986,11 @@ document.getElementById('state_law').value=obj.state_law;
 			 document.getElementById('opt_city').value=obj.opt_city;
 			  document.getElementById('opt_zip').value=obj.opt_zip;
 			   document.getElementById('opt_state').value=obj.opt_state;
+			   document.getElementById('mail_opt_out_1').value=obj.mail_opt_out_1;
+			   document.getElementById('mail_opt_out_2').value=obj.mail_opt_out_2;
+			   document.getElementById('mail_opt_out_3').value=obj.mail_opt_out_3;
+			   document.getElementById('mail_opt_out_4').value=obj.mail_opt_out_4;
+			   document.getElementById('mail_opt_out_5').value=obj.mail_opt_out_5;
 			   
 				document.getElementById('other_src').value=obj.other_src;
 			    document.getElementById('protect').value=obj.protect;
@@ -1127,6 +1132,55 @@ document.getElementById('state_law').value=obj.state_law;
 								data-content="Postal Mail's Zip code to perform opt out."></span>
 							</label>
 							<input required="required" type="text" id="opt_zip" name="opt_zip" placeholder="15213">
+							
+							<label for="share1">Do you share personal information pursuant to section 603(d)(2)(A)(iii) of the FCRA? &nbsp; <span style="display: inline;" class="bp-icon bp-icon-about"
+								data-content="If yes,the mail-in opt-out form has the following: Do not share information about my creditworthiness with your affiliates for their everyday business purposes"></span>
+							</label> 
+							<select required="required" id="mail_opt_out_1" name="mail_opt_out_1">
+								<option value="choose">Choose an Option</option>
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+								
+							</select>
+							</div><div class="cbp-mc-column">
+							<label for="share2">Do you incorporate section 624 of the FCRA in accord with paragraph C.2(d)(6) of these Instructions? 
+&nbsp;<span style="display: inline;" class="bp-icon bp-icon-about" data-content='If yes,  the mail-in opt-out form has the following : " Do not allow your affiliates to use my personal information to market to me."'></span>
+</label>
+<select id="mail_opt_out_2" name="mail_opt_out_2" required="required" title="Choose yes or no" >
+	<option value="choose">Choose an Option</option>
+	<option value="yes">Yes</option>
+	<option value="no">No</option>
+</select>
+
+<label for="share3">Do you share personal information pursuant to Â§ 313.10(a) of Financial Privacy Rule?
+&nbsp;<span style="display: inline;" class="bp-icon bp-icon-about" data-content='If yes,the mail-in opt-out form  has the following : "Do not share my personal information with non-affiliates to market their products and services to me."'></span>
+</label>
+<select id="mail_opt_out_3" name="mail_opt_out_3" required="required"
+	title="Choose yes or no" >
+	<option value="choose">Choose an Option</option>
+	<option value="yes">Yes</option>
+	<option value="no">No</option>
+</select>
+
+<label for="share4">Do you use the disclosure table to provide opt-out options beyond those required by Federal law?
+&nbsp;<span style="display: inline;" class="bp-icon bp-icon-about" data-content='A financial institution that chooses to offer an opt-out for its own marketing in the mail- in opt-out form must include one of the two following tatements: "Do not share my personal information to market to me." or "Do not use my personal information to market to me."'></span>
+</label>
+<select id="mail_opt_out_4" name="mail_opt_out_4" required="required"
+	title="Choose yes or no" >
+		<option value="choose">Choose an Option</option>
+	<option value="yes">Yes</option>
+	<option value="no">No</option>
+</select>
+<label for="first_name">Do you offer an opt-out for joint marketing?
+<span style="display: inline;" class="bp-icon bp-icon-about" data-content='A financial institution that chooses to offer an opt-out for joint marketing must include the following statement: "Do not share my personal information with other financial institutions to jointly market to me."'></span>
+</label>
+&nbsp;<select id="mail_opt_out_5" name="mail_opt_out_5" required="required"
+	title="Choose yes or no" >
+		<option value="choose">Choose an Option</option>
+
+	<option value="yes">Yes</option>
+	<option value="no">No</option>
+</select>
 							</div>
 						</fieldset>
   </div>
