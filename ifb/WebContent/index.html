@@ -926,10 +926,10 @@ document.getElementById('state_law').value=obj.state_law;
 				</form>-->
 			</section>
 			<section id="section-4">
-				<div style="border: 1px solid #47a3da; height: 44px" align="right" 
+				<div style="border: 1px solid #47a3da; height: 44px" align="right"
 					id="upload">
-					<input type="file" id="files" name="file" style="padding-top:6px"/> Read bytes: <span
-						class="readBytesButtons">
+					<input type="file" id="files" name="file" style="padding-top: 6px" />
+					Read bytes: <span class="readBytesButtons">
 						<button type="button">Import</button>
 					</span>
 					<script>
@@ -1038,7 +1038,7 @@ document.getElementById('state_law').value=obj.state_law;
 										}, false);
 					</script>
 				</div>
-				<div style="height:22px" ></div>
+				<div style="height: 22px"></div>
 				<form class="cbp-mc-form" action="generate.do" method="post">
 					<div id="accordion">
 
@@ -1068,7 +1068,7 @@ document.getElementById('state_law').value=obj.state_law;
 										<option value="Yes">Yes</option>
 										<option value="No">No</option>
 									</select>
-									<div style="height:40px"></div>
+									<div style="height: 40px"></div>
 								</div>
 								<div class="cbp-mc-column">
 									<div id="fnames" style="display: none;">
@@ -1098,12 +1098,9 @@ document.getElementById('state_law').value=obj.state_law;
 										title="Choose Multiple Schemes." class="chosen-select"
 										multiple="multiple" style="width: 350px;" tabindex="4"
 										onchange="multichange_display('opt_schema')">
-										<option value="Phone"
-											onclick="change_display(opt_phone_selected)">Phone</option>
-										<option value="e-mail">Online</option>
-										<option value="Postal">Postal</option>
-										<option value="Do Not Track">Do Not Track</option>
-										<option value="Cookies">Cookies</option>
+										<option value="phone">Phone</option>
+										<option value="online">Online</option>
+										<option value="mail">Mail-in</option>
 									</select>
 									<script>
 							function multichange_display(s_id){
@@ -1123,10 +1120,24 @@ document.getElementById('state_law').value=obj.state_law;
 								}else{
 									document.getElementById('opt_mail_selected').style.display="none";
 								}
+								if(select.options[0].selected||select.options[1].selected||select.options[0].selected){
+									document.getElementById('opt_collect_selected').style.display="";
+								}else {
+									document.getElementById('opt_collect_selected').style.display="none";
+								}
 							}
 							</script>
-
-
+									<div id="opt_collect_selected" style="display: none;">
+										<label for="first_name">Select opt-out from collecting information your provide  &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Opt Out Schemes made available by the financial institution."></span></label>
+										<select id="opt_collect_schema" name="opt_collect_schema"
+											title="Choose Multiple Schemes." class="chosen-select"
+											multiple="multiple" style="width: 350px;" tabindex="4">
+											<option value="dnt">Do Not Track</option>
+											<option value="coockie">Cookies</option>
+										</select>
+									</div>
 									<div id="opt_phone_selected" style="display: none;">
 										<label for="email">Opt Out - Phone Number &nbsp; <span
 											style="display: inline;" class="bp-icon bp-icon-about"
@@ -1192,7 +1203,7 @@ document.getElementById('state_law').value=obj.state_law;
 										<option value="yes">Yes</option>
 										<option value="no">No</option>
 									</select>
-									<div style="height:40px"></div>
+									<div style="height: 40px"></div>
 								</div>
 
 								<!--<div class="cbp-mc-column">
@@ -1656,7 +1667,7 @@ document.getElementById('state_law').value=obj.state_law;
 										<!--<option value="y_wo_opt">Yes without Opt Out</option>-->
 										<option value="not_share">No</option>
 									</select>
-									<div style="height:40px"></div>
+									<div style="height: 40px"></div>
 								</div>
 
 
