@@ -4,7 +4,7 @@ public class JsonData {
 	public String fname = null;
 	public String rev_date = null;
 	public String who_we_are = null;
-	public Boolean joint_acct = null;
+	public String joint_acct = null;
 	public String[] opt_scheme = null;
 	public String opt_web = null;
 	public String opt_phone = null;
@@ -28,6 +28,12 @@ public class JsonData {
 	public String aff = null;
 	public String naff = null;
 	public String jmar = null;
-	public Boolean state_law = null;
+	public String state_law = null;
 	public String other_info = null;
+	// added on 6th June
+	public String mail_opt_out_1 = null;
+	public String mail_opt_out_2 = null;
+	public String mail_opt_out_3 = null;
+	public String mail_opt_out_4 = null;
+	public String mail_opt_out_5 = null;
 }
