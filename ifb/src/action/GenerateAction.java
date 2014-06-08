@@ -18,11 +18,12 @@ import java.util.zip.ZipOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import json.JsonData;
+import model.Model;
+
 import com.google.gson.Gson;
 
 import control.Controller;
-import json.JsonData;
-import model.Model;
 
 public class GenerateAction implements Action {
 
@@ -80,8 +81,9 @@ public class GenerateAction implements Action {
 			}
 		}
 		request.setAttribute("what_coll", what_coll);
-
+		
 		boolean offer_opt_out = false;
+		ArrayList<String> messages = new ArrayList<String>();
 		json.share_eday = request.getParameter("share_eday");
 		if ("y_w_opt".equals(json.share_eday)) {
 			offer_opt_out = true;
@@ -94,12 +96,13 @@ public class GenerateAction implements Action {
 			request.setAttribute("share_eday", "No");
 			request.setAttribute("limit_eday", "No");
 		}
-
+		
 		json.share_mar = request.getParameter("share_mar");
 		if ("y_w_opt".equals(json.share_mar)) {
 			offer_opt_out = true;
 			request.setAttribute("share_mar", "Yes");
 			request.setAttribute("limit_mar", "Yes");
+			messages.add("Do not share my personal information to market to me.");
 		} else if ("y_wo_opt".equals(json.share_mar)) {
 			request.setAttribute("share_mar", "Yes");
 			request.setAttribute("limit_mar", "No");
@@ -107,12 +110,13 @@ public class GenerateAction implements Action {
 			request.setAttribute("share_mar", "No");
 			request.setAttribute("limit_mar", "No");
 		}
-
+		
 		json.share_joint = request.getParameter("share_joint");
 		if ("y_w_opt".equals(json.share_joint)) {
 			offer_opt_out = true;
 			request.setAttribute("share_joint", "Yes");
 			request.setAttribute("limit_joint", "Yes");
+			messages.add("Do not share my personal information with other financial institutions to jointly market to me.");
 		} else if ("y_wo_opt".equals(json.share_joint)) {
 			request.setAttribute("share_joint", "Yes");
 			request.setAttribute("limit_joint", "No");
@@ -120,7 +124,7 @@ public class GenerateAction implements Action {
 			request.setAttribute("share_joint", "No");
 			request.setAttribute("limit_joint", "No");
 		}
-
+		
 		json.share_aff = request.getParameter("share_aff");
 		if ("y_w_opt".equals(json.share_aff)) {
 			offer_opt_out = true;
@@ -133,12 +137,13 @@ public class GenerateAction implements Action {
 			request.setAttribute("share_aff", "No");
 			request.setAttribute("limit_aff", "No");
 		}
-
+		
 		json.share_credit = request.getParameter("share_credit");
 		if ("y_w_opt".equals(json.share_credit)) {
 			offer_opt_out = true;
 			request.setAttribute("share_credit", "Yes");
 			request.setAttribute("limit_credit", "Yes");
+			messages.add("Do not share information about my creditworthiness with your affiliates for their everyday business purposes.");
 		} else if ("y_wo_opt".equals(json.share_credit)) {
 			request.setAttribute("share_credit", "Yes");
 			request.setAttribute("limit_credit", "No");
@@ -146,27 +151,34 @@ public class GenerateAction implements Action {
 			request.setAttribute("share_credit", "No");
 			request.setAttribute("limit_credit", "No");
 		}
-
-		json.share_aff_mar = request.getParameter("share_aff_mar");
-		if ("y_w_opt".equals(json.share_aff_mar)) {
-			offer_opt_out = true;
-			request.setAttribute("share_aff_mar", "Yes");
-			request.setAttribute("limit_aff_mar", "Yes");
-		} else if ("y_wo_opt".equals(json.share_aff_mar)) {
-			request.setAttribute("share_aff_mar", "Yes");
-			request.setAttribute("limit_aff_mar", "No");
-		} else if ("omit".equals(json.share_aff_mar)) {
-			request.setAttribute("omit_share_aff_mar", true);
+		
+		json.share_aff_mar_q = request.getParameter("share_aff_mar_q");
+		boolean dsp_q6 = true;
+		if ("Yes".equals(json.share_aff_mar_q)) {
+			dsp_q6 = false;
 		} else {
-			request.setAttribute("share_aff_mar", "No");
-			request.setAttribute("limit_aff_mar", "No");
+			json.share_aff_mar = request.getParameter("share_aff_mar");
+			if ("y_w_opt".equals(json.share_aff_mar)) {
+				offer_opt_out = true;
+				request.setAttribute("share_aff_mar", "Yes");
+				request.setAttribute("limit_aff_mar", "Yes");
+				messages.add("Do not allow your affiliates to use my personal information to market to me.");
+			} else if ("y_wo_opt".equals(json.share_aff_mar)) {
+				request.setAttribute("share_aff_mar", "Yes");
+				request.setAttribute("limit_aff_mar", "No");
+			} else {
+				request.setAttribute("share_aff_mar", "No");
+				request.setAttribute("limit_aff_mar", "No");
+			}
 		}
-
+		request.setAttribute("dsp_q6", dsp_q6);
+		
 		json.share_non_aff_mar = request.getParameter("share_non_aff_mar");
 		if ("y_w_opt".equals(json.share_non_aff_mar)) {
 			offer_opt_out = true;
 			request.setAttribute("share_non_aff_mar", "Yes");
 			request.setAttribute("limit_non_aff_mar", "Yes");
+			messages.add("Do not share my personal information with nonaffiliates to market their products and services to me.");
 		} else if ("y_wo_opt".equals(json.share_non_aff_mar)) {
 			request.setAttribute("share_non_aff_mar", "Yes");
 			request.setAttribute("limit_non_aff_mar", "No");
@@ -176,6 +188,7 @@ public class GenerateAction implements Action {
 		}
 
 		request.setAttribute("offer_opt_out", offer_opt_out);
+		request.setAttribute("mail_opt_options", messages);
 
 		json.opt_phone = request.getParameter("opt_phone");
 		request.setAttribute("opt_phone", json.opt_phone);
@@ -184,6 +197,7 @@ public class GenerateAction implements Action {
 		request.setAttribute("opt_web", json.opt_web);
 
 		boolean mail_opt_out = false;
+		boolean online_opt_out = false;
 		if (offer_opt_out) {
 			json.opt_num_days = request.getParameter("opt_num_days");
 			request.setAttribute("opt_num_days", json.opt_num_days);
@@ -197,20 +211,17 @@ public class GenerateAction implements Action {
 					} else if ("phone".equals(opt)) {
 						request.setAttribute("phone_opt", true);
 					} else if ("online".equals(opt)) {
+						online_opt_out = true;
 						request.setAttribute("online_opt", true);
-					} else if ("e-mail".equals(opt)) {
-						request.setAttribute("email_opt", true);
-					} else if ("DNT".equals(opt)) {
-						request.setAttribute("DNT_opt", true);
-					} else if ("cookies".equals(opt)) {
-						request.setAttribute("cookie_opt", true);
 					}
 				}
 			}
+			
+			json.opt_collect_schema = request.getParameterValues("opt_collect_schema");
 		}
 		request.setAttribute("mail_opt_out", mail_opt_out);
 
-		if (mail_opt_out) {
+		if (mail_opt_out || online_opt_out) {
 			json.joint_acct = request.getParameter("joint_acct");
 			if ("yes".equals(json.joint_acct)) {
 				request.setAttribute("joint_acct", true);
@@ -231,42 +242,17 @@ public class GenerateAction implements Action {
 			json.opt_zip = request.getParameter("opt_zip");
 			request.setAttribute("opt_zip", json.opt_zip);
 
-			ArrayList<String> messages = new ArrayList<String>();
-
-			json.mail_opt_out_1 = request.getParameter("mail_opt_out_1");
-			request.setAttribute("mail_opt_out_1", json.mail_opt_out_1);
-			if ("yes".equals(json.mail_opt_out_1)) {
-				messages.add("Do not share information about my creditworthiness with your affiliates for their everyday business purposes.");
-			}
-
-			json.mail_opt_out_2 = request.getParameter("mail_opt_out_2");
-			request.setAttribute("mail_opt_out_2", json.mail_opt_out_2);
-			if ("yes".equals(json.mail_opt_out_2)) {
-				messages.add("Do not allow your affiliates to use my personal information to market to me.");
-			}
-			json.mail_opt_out_3 = request.getParameter("mail_opt_out_3");
-			request.setAttribute("mail_opt_out_3", json.mail_opt_out_3);
-			if ("yes".equals(json.mail_opt_out_3)) {
-				messages.add("Do not share my personal information with nonaffiliates to market their products and services to me.");
-			}
-
-			json.mail_opt_out_4 = request.getParameter("mail_opt_out_4");
-			request.setAttribute("mail_opt_out_4", json.mail_opt_out_4);
-			if ("yes".equals(json.mail_opt_out_4)) {
-				messages.add("Do not share my personal information to market to me.");
-			}
-
-			json.mail_opt_out_5 = request.getParameter("mail_opt_out_5");
-			request.setAttribute("mail_opt_out_5", json.mail_opt_out_5);
-			if ("yes".equals(json.mail_opt_out_5)) {
-				messages.add("Do not share my personal information with other financial institutions to jointly market to me.");
-			}
-
-			request.setAttribute("mail_opt_options", messages);
 		}
 
-		json.who_we_are = request.getParameter("who_we_are");
-		request.setAttribute("who_we_are", json.who_we_are);
+		json.name_identified = request.getParameter("name_identified");
+		boolean name_identified = false;
+		if ("Yes".equals(json.name_identified)) {
+			name_identified = true;
+		} else {
+			json.who_we_are = request.getParameter("who_we_are");
+			request.setAttribute("who_we_are", json.who_we_are);
+		}
+		request.setAttribute("name_identified", name_identified);
 
 		json.protect = request.getParameter("protect");
 		request.setAttribute("protect", json.protect);
@@ -332,38 +318,87 @@ public class GenerateAction implements Action {
 		request.setAttribute("other_src_info",
 				other_src_map.get(json.other_src));
 
-		json.state_law = request.getParameter("state_law");
-		if ("yes".equals(json.state_law)) {
+		json.aff_have = request.getParameter("aff_have");
+		StringBuilder aff_info = new StringBuilder();
+		if ("no".equals(json.aff_have)) {
+			aff_info.append(json.fname + " has no affiliates.");
+		} else {
+			json.aff_share = request.getParameter("aff_share");
+			if ("no".equals(json.aff_share)) {
+				aff_info.append(json.fname
+						+ " does not share with our affiliates");
+			} else {
+				json.aff = request.getParameter("aff");
+				aff_info.append("Our affiliates include companies such as:\n");
+				aff_info.append(json.aff + "\n");
+			}
+		}
+		request.setAttribute("aff", aff_info.toString());
+
+		json.naff_share = request.getParameter("naff_share");
+		StringBuilder naff_info = new StringBuilder();
+		if ("no".equals(json.naff_share)) {
+			naff_info
+					.append(json.fname
+							+ " does not share with nonaffiliates so they can market to you");
+		} else {
+			json.naff = request.getParameter("naff");
+			naff_info.append("Non affiliates we share with can include:\n");
+			naff_info.append(json.naff + "\n");
+		}
+		request.setAttribute("naff", naff_info.toString());
+
+		json.jamr_engage = request.getParameter("jamr_engage");
+		StringBuilder jmar_info = new StringBuilder();
+		if ("no".equals(json.jamr_engage)) {
+			jmar_info.append(json.fname + " doesn't jointly market");
+		} else {
+			json.jmar_share = request.getParameter("jmar_share");
+			if ("no".equals(json.jmar_share)) {
+				jmar_info
+						.append(json.fname
+								+ " doesn't share personal inforamtion for joint marketing");
+			} else {
+				json.jmar = request.getParameter("jmar");
+				jmar_info.append("Our joint marketing partners include:\n");
+				jmar_info.append(json.jmar);
+			}
+		}
+		request.setAttribute("jmar", jmar_info);
+
+		StringBuilder other_info = new StringBuilder();
+		json.other_law = request.getParameter("other_law");
+		if ("yes".equals(json.other_law)) {
 			request.setAttribute("see_below",
 					"See below for more on your rights under state law.");
+			json.other_law_detail = request.getParameter("other_law_detail");
+			other_info.append(json.other_law_detail + "\n");
 		}
-
-		json.aff = request.getParameter("aff");
-		request.setAttribute("aff", json.aff);
-
-		json.naff = request.getParameter("naff");
-		request.setAttribute("naff", json.naff);
-
-		json.jmar = request.getParameter("jmar");
-		request.setAttribute("jmar", json.jmar);
-
-		json.other_info = request.getParameter("other_info");
-		request.setAttribute("other_info", json.other_info);
+		json.other_ack = request.getParameter("other_ack");
+		if ("yes".equals(json.other_ack)) {
+			json.other_ack_detail = request.getParameter("other_ack_detail");
+			other_info.append(json.other_ack_detail + "\n");
+		}
+		request.setAttribute("other_info", other_info.toString());
 
 		request.setAttribute("dsp_download", false);
-
-		generateFiles(request, response, json);
+		
+		/**
+		 * generate files
+		 */
+		generateFiles(request, response, json, online_opt_out);
 
 		compress(request);
 
 		request.setAttribute("dsp_download", true);
-		
+
 		return "output.jsp";
 
 	}
 
 	private void generateFiles(HttpServletRequest request,
-			HttpServletResponse response, JsonData json) throws Exception {
+			HttpServletResponse response, JsonData json,
+			boolean attach_online_opt_out) throws Exception {
 		File targetDir = new File(downloadPath + request.getSession().getId());
 		if (targetDir.exists()) {
 			for (File file : targetDir.listFiles()) {

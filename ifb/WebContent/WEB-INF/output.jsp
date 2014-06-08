@@ -7,12 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Privacy notice</title>
 <link rel="stylesheet" type="text/css" href="css/pbi-web-ps-jawr.css" media="all" />
-<link rel="stylesheet" type="text/css" href="css/pbi-web-ps-jawr-print.css" media="print" />
 </head>
 
 <body>
 	<div class="flex-col lt-col"
-		style="margin-left: auto; margin-right: auto">
+		style="margin-left: auto; margin-right: auto; width: 800px">
 
 		<div class="table-module">
 			<p style="float: right">${rev_date}</p>
@@ -116,9 +115,9 @@
 								<td>${limit_credit}</td>
 							</tr>
 							<c:choose>
-								<c:when test="${not omit_share_aff_mar}">
+								<c:when test="${dsp_q6}">
 									<tr>
-										<td><strong>For our affiliates’ everyday business purposes </strong>— Information about your creditworthiness</td>
+										<td><strong>For our affiliates to market to you </strong></td>
 										<td>${share_aff_mar}</td>
 										<td>${limit_aff_mar}</td>
 									</tr>
@@ -182,8 +181,8 @@
 				<c:choose>
 					<c:when test="${mail_opt}">
 						<br/>
-							<!-- <div class="flex-col lt-col"
-								style="margin-left: auto; margin-right: auto; width: 800px;"> -->
+							<div class="flex-col lt-col"
+								style="margin-left: auto; margin-right: auto; width: 800px; height: 450px;">
 								<div class="table-module">
 									<div class="consumer-privacy-notice-skin">
 										<div>
@@ -237,7 +236,7 @@
 										</div>
 									</div>
 								</div>
-							<!-- </div> -->						
+							</div>					
 						<br/>
 					</c:when>
 				</c:choose>
@@ -248,7 +247,14 @@
 						<div class="cpn-cell cpn-heading">Who is providing this
 							notice?</div>
 						<div class="cpn-cell cpn-details">
-							<p>${who_we_are}</p>
+							<c:choose>
+								<c:when test="${name_identified}">
+									<p>${fname}</p>
+								</c:when>
+								<c:otherwise>
+									<p>${who_we_are}</p>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="clearboth"></div>
 					</div>
