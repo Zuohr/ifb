@@ -146,7 +146,7 @@
     display: list-item;
     background-image: none;
     position: static;
-    height:20px;
+    height:100%;
 }
 
 .ms-drop ul > li .disabled {
