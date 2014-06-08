@@ -115,7 +115,7 @@
                 if ((this.options.blockSeparator>"") && (this.options.blockSeparator==$elm.val())) {
 	                html.push(
 		                    '<li' + (multiple ? ' class="multiple"' : '') + style + '>',
-		                        '<label class="' + this.options.blockSeparator + (disabled ? 'disabled' : '') + '">',
+		                        '<label style="font-size:2px" class="' + this.options.blockSeparator + (disabled ? 'disabled' : '') + '">',
 		                            text,
 		                        '</label>',
 		                    '</li>'

@@ -81,22 +81,22 @@ fieldset{
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
-    color: #10689a;
+    color: #ADADAD;
     font-style: italic;
 }
 
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #10689a;
+    color: #ADADAD;
     font-style: italic;
 }
 
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #10689a;
+    color: #ADADAD;
     font-style: italic;
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: #10689a;
+    color: #ADADAD;
     font-style: italic;
 }
 

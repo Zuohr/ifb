@@ -1064,7 +1064,7 @@ document.getElementById('state_law').value=obj.state_law;
 										name="name_identified" required="required"
 										title="Is financial instuitution name identified"
 										class="chosen-select" style="width: 350px;" tabindex="4"
-										onchange="change_display('fnames')">
+										onchange="change_display1('name_identified','fnames',false)">
 										<option value="Yes">Yes</option>
 										<option value="No">No</option>
 									</select>
@@ -1126,12 +1126,24 @@ document.getElementById('state_law').value=obj.state_law;
 									document.getElementById('opt_collect_selected').style.display="none";
 								}
 							}
+							
+							function change_display1(this_div_id,change_div_id, yes_and_present){
+								var select=document.getElementById(this_div_id);
+								var yes=yes_and_present?"":"none";
+								var no=yes_and_present?"none":"";
+								if(select.options[0].selected){
+									document.getElementById(change_div_id).style.display=yes;
+								}else if(select.options[1].selected){
+									document.getElementById(change_div_id).style.display=no;
+								}
+							}
 							</script>
 									<div id="opt_collect_selected" style="display: none;">
-										<label for="first_name">Select opt-out from collecting information your provide  &nbsp; <span
+										<label for="first_name">Select opt-out from collecting
+											information your provide &nbsp; <span
 											style="display: inline;" class="bp-icon bp-icon-about"
-											data-content="Opt Out Schemes made available by the financial institution."></span></label>
-										<select id="opt_collect_schema" name="opt_collect_schema"
+											data-content="Opt Out Schemes made available by the financial institution."></span>
+										</label> <select id="opt_collect_schema" name="opt_collect_schema"
 											title="Choose Multiple Schemes." class="chosen-select"
 											multiple="multiple" style="width: 350px;" tabindex="4">
 											<option value="dnt">Do Not Track</option>
@@ -1627,7 +1639,7 @@ document.getElementById('state_law').value=obj.state_law;
 									</select>
 								</div>
 								<div class="cbp-mc-column">
-									<label>Do you comform to any of the following
+									<label>Do you conform to any of the following
 										qualifications?</label>
 									<ul>
 										<font size="2px"><li>the institution does not have
@@ -1640,7 +1652,7 @@ document.getElementById('state_law').value=obj.state_law;
 									</ul>
 									<select data-single="true" name="share_aff_mar_q"
 										id="share_aff_mar_q"
-										onchange="change_display('share_aff_ques')">
+										onchange="change_display1('share_aff_mar_q','share_aff_ques'),false">
 										<option value="Yes">Yes</option>
 										<option value="No">No</option>
 									</select>
@@ -1757,7 +1769,8 @@ document.getElementById('state_law').value=obj.state_law;
 										style="display: inline;" class="bp-icon bp-icon-about"
 										data-content="To market products by our affiliates."></span>
 									</label> <select data-single="true" required="required" id="aff_have"
-										name="aff_have" onchange="change_display('aff_have_selected')">
+										name="aff_have"
+										onchange="change_display1('aff_have','aff_have_selected',true)">
 										<option value="yes">Yes</option>
 										<option value="no">No</option>
 									</select>
@@ -1768,7 +1781,7 @@ document.getElementById('state_law').value=obj.state_law;
 											data-content="To market products by our affiliates."></span>
 										</label> <select data-single="true" required="required" id="aff_share"
 											name="aff_share"
-											onchange="change_display('aff_share_selected')">
+											onchange="change_display1('aff_share','aff_share_selected',true)">
 											<option value="yes">Yes</option>
 											<option value="no">No</option>
 										</select>
@@ -1781,22 +1794,6 @@ document.getElementById('state_law').value=obj.state_law;
 											<textarea required="required"
 												placeholder="Specify Affiliates"
 												title="Affiliates Information" id="aff" name="aff"></textarea>
-											<label for="bio">Specify financial companies you
-												share information with, one company per line &nbsp; <span
-												style="display: inline;" class="bp-icon bp-icon-about"
-												data-content="Companies related by common control."></span>
-											</label>
-											<textarea required="required" placeholder="Specify companies"
-												title="Financial Company Information" id="aff_f"
-												name="aff_f"></textarea>
-											<label for="bio">Specify nonfinancial companies you
-												share information with, one company per line &nbsp; <span
-												style="display: inline;" class="bp-icon bp-icon-about"
-												data-content="Companies related by common control."></span>
-											</label>
-											<textarea required="required"
-												placeholder="Specify Affiliates"
-												title="Affiliates Information" id="aff_nf" name="aff_nf"></textarea>
 										</div>
 									</div>
 								</div>
@@ -1807,7 +1804,7 @@ document.getElementById('state_law').value=obj.state_law;
 										data-content="To market products by our affiliates."></span>
 									</label> <select data-single="true" required="required" id="naff_share"
 										name="naff_share"
-										onchange="change_display('naff_share_selected')">
+										onchange="change_display1('naff_share','naff_share_selected',true)">
 										<option value="yes">Yes</option>
 										<option value="no">No</option>
 									</select>
@@ -1827,7 +1824,7 @@ document.getElementById('state_law').value=obj.state_law;
 										data-content="To market products by our affiliates."></span>
 									</label> <select data-single="true" required="required"
 										id="jamr_engage" name="jamr_engage"
-										onchange="change_display('jmar_engage_selected')">
+										onchange="change_display1('jamr_engage','jmar_engage_selected',true)">
 										<option value="yes">Yes</option>
 										<option value="no">No</option>
 									</select>
@@ -1838,7 +1835,7 @@ document.getElementById('state_law').value=obj.state_law;
 											data-content="To market products by our affiliates."></span>
 										</label> <select data-single="true" required="required"
 											id="jmar_share" name="jmar_share"
-											onchange="change_display('jmar_share_selected')">
+											onchange="change_display1('jmar_share','jmar_share_selected',false)">
 											<option value="yes">Yes</option>
 											<option value="no">No</option>
 										</select>
@@ -1861,6 +1858,7 @@ document.getElementById('state_law').value=obj.state_law;
 										class="bp-icon bp-icon-about"
 										data-content='Describe state privacy law provisions in the "Other information"?'></span>
 									</label> <select required="required" id="other_law" name="other_law"
+										data-single="true"
 										onchange="change_dispaly('other_law_selected')">
 										<option value="yes">Yes</option>
 										<option value="no">No</option>
@@ -1881,6 +1879,7 @@ document.getElementById('state_law').value=obj.state_law;
 										class="bp-icon bp-icon-about"
 										data-content='Describe state privacy law provisions in the "Other information"?'></span>
 									</label> <select required="required" id="other_ack" name="other_ack"
+										data-single="true"
 										onchange="change_dispaly('other_ack_selected')">
 										<option value="yes">Yes</option>
 										<option value="no">No</option>
