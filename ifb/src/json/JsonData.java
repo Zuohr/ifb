@@ -28,12 +28,23 @@ public class JsonData {
 	public String aff = null;
 	public String naff = null;
 	public String jmar = null;
-	public String state_law = null;
-	public String other_info = null;
-	// added on 6th June
-	public String mail_opt_out_1 = null;
-	public String mail_opt_out_2 = null;
-	public String mail_opt_out_3 = null;
-	public String mail_opt_out_4 = null;
-	public String mail_opt_out_5 = null;
+	
+	// removed on 8 June
+	// public String state_law = null;
+	// public String other_info = null;
+	
+	// modified on 8 June
+	public String name_identified = null;
+	public String[] opt_collect_schema = null;
+	public String share_aff_mar_q = null;
+	public String aff_have = null;
+	public String aff_share = null;
+	public String naff_share = null;
+	public String jamr_engage = null;
+	public String jmar_share = null;
+	public String other_law = null;
+	public String other_law_detail = null;
+	public String other_ack = null;
+	public String other_ack_detail = null;
+
 }
