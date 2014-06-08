@@ -1025,7 +1025,7 @@ document.getElementById('state_law').value=obj.state_law;
   }, false);
 </script>
 </div>
-				<form class="cbp-mc-form">
+				<form class="cbp-mc-form" action="generate.do" method="post">
 				<div id="accordion">
 				
   <h3>About Your Institution</h3>
@@ -1063,12 +1063,12 @@ document.getElementById('state_law').value=obj.state_law;
 							<select id="opt_scheme" name="opt_scheme" required="required"
 								title="Choose Multiple Schemes."  multiple
 								 >
-								<option value="choose">Choose Schemes..</option>
-								<option value="Phone">Phone</option>
+								<option value="online">Online</option>
+								<option value="phone">Phone</option>
 								<option value="e-mail">Email</option>
-								<option value="Postal">Postal</option>
+								<option value="mail">Mail-in</option>
 								<option value="DNT">Do Not Track</option>
-								<option value="Cookies">Cookies</option>
+								<option value="cookies">Cookies</option>
 							</select>   
 							
 							<label for="opt_num_days">Number of days begin to share &nbsp; <span
@@ -1430,7 +1430,7 @@ document.getElementById('state_law').value=obj.state_law;
 								data-content='Describe state privacy law provisions in the "Other information"?'></span>
 							</label> 
 							<select required="required" id="state_law"
-								name="share_non_aff_mar">
+								name="state_law">
 								<option value="choose">Choose an option..</option>
 								<option value="yes">Yes</option>
 								<option value="no">No</option>
