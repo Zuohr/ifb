@@ -9,18 +9,20 @@
 <meta name="keywords"
 	content="responsive tabs, full width tabs, template, blueprint" />
 <meta name="author" content="Codrops" />
+<link href="css/multiple-select.css" rel="stylesheet" />
 <link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
- 
-  <script>
- $(function() {
-    $( "#accordion" ).accordion({
-      heightStyle: "content"
-    });
-  });
-  </script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script>
+	$(function() {
+		$("#accordion").accordion({
+			heightStyle : "content"
+		});
+	});
+</script>
 <link rel="stylesheet" type="text/css" href="css/demo.css" />
 <link rel="stylesheet" type="text/css" href="css/component.css" />
 <link rel="stylesheet" type="text/css" href="css/component1.css" />
@@ -53,7 +55,8 @@ body {
 					<li><a href="#section-3" class="icon-lab"><span>Policy
 								Generator</span></a></li>
 
-					<li><a href="#section-5" class="icon-truck"><span>Policy Generator 2.0</span></a></li>
+					<li><a href="#section-5" class="icon-truck"><span>Policy
+								Generator 2.0</span></a></li>
 				</ul>
 			</nav>
 			<div class="content">
@@ -418,7 +421,7 @@ body {
 			</ul>
 			</section>
 			<section id="section-3">
-			<!--  
+				<!--  
 			<div style="border:1px solid red" align="right"id="upload">
 <input type="file" id="files" name="file" /> Read bytes: 
 <span class="readBytesButtons">
@@ -925,531 +928,1007 @@ document.getElementById('state_law').value=obj.state_law;
 
 				</form>-->
 			</section>
-				<section id="section-4">
-			<div style="border:1px solid red" align="right"id="upload">
-<input type="file" id="files" name="file" /> Read bytes: 
-<span class="readBytesButtons">
-  <button>Import</button>
-</span>
-<script>
-  function readBlob(opt_startByte, opt_stopByte) {
+			<section id="section-4">
+				<div style="border: 1px solid #47a3da;height:32px" align="right" id="upload">
+					<input type="file" id="files" name="file" /> Read bytes: <span
+						class="readBytesButtons">
+						<button type="button">Import</button>
+					</span>
+					<script>
+						function readBlob(opt_startByte, opt_stopByte) {
 
-    var files = document.getElementById('files').files;
-    if (!files.length) {
-      alert('Please select a file!');
-      return;
-    }
+							var files = document.getElementById('files').files;
+							if (!files.length) {
+								alert('Please select a file!');
+								return;
+							}
 
-    var file = files[0];
-    var start = parseInt(opt_startByte) || 0;
-    var stop = parseInt(opt_stopByte) || file.size - 1;
+							var file = files[0];
+							var start = parseInt(opt_startByte) || 0;
+							var stop = parseInt(opt_stopByte) || file.size - 1;
 
-    var reader = new FileReader();
+							var reader = new FileReader();
 
-    // If we use onloadend, we need to check the readyState.
-    reader.onloadend = function(evt) {
-      if (evt.target.readyState == FileReader.DONE) { // DONE == 2
-        var json = evt.target.result;
-		obj = JSON.parse(json);
-        document.getElementById('fname').value=obj.fname;
-		document.getElementById('who_we_are').value=obj.who_we_are;
-	for (var i in obj.opt_scheme) {
-    //var counter = obj.opt_scheme[i];
-    //console.log(obj.opt_scheme[i]);
-	for (var j = 0; j < opt_scheme.options.length; ++j) {
-   if (opt_scheme.options[j].value === obj.opt_scheme[i]) opt_scheme.options[j].selected = true;
-}
-}
-	for (var k in obj.what_coll) {
-    //var counter = obj.opt_scheme[i];
-    console.log(obj.what_coll[k]);
-	for (var l = 0; l < what_coll.options.length; ++l) {
-   if (what_coll.options[l].value === obj.what_coll[k]) what_coll.options[l].selected = true;
-}
-}
-//what_coll.options[1].selected = true;
-//what_coll.options[3].selected = true;
-	for (var i in obj.how_coll) {
-    //var counter = obj.opt_scheme[i];
-    //console.log(obj.opt_scheme[i]);
-	for (var j = 0; j < how_coll.options.length; ++j) {
-   if (how_coll.options[j].value === obj.how_coll[i]) how_coll.options[j].selected = true;
-}
-}
+							// If we use onloadend, we need to check the readyState.
+							reader.onloadend = function(evt) {
+								if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+									var json = evt.target.result;
+									obj = JSON.parse(json);
+									document.getElementById('fname').value = obj.fname;
+									document.getElementById('who_we_are').value = obj.who_we_are;
+									for ( var i in obj.opt_scheme) {
+										//var counter = obj.opt_scheme[i];
+										//console.log(obj.opt_scheme[i]);
+										for (var j = 0; j < opt_scheme.options.length; ++j) {
+											if (opt_scheme.options[j].value === obj.opt_scheme[i])
+												opt_scheme.options[j].selected = true;
+										}
+									}
+									for ( var k in obj.what_coll) {
+										//var counter = obj.opt_scheme[i];
+										console.log(obj.what_coll[k]);
+										for (var l = 0; l < what_coll.options.length; ++l) {
+											if (what_coll.options[l].value === obj.what_coll[k])
+												what_coll.options[l].selected = true;
+										}
+									}
+									//what_coll.options[1].selected = true;
+									//what_coll.options[3].selected = true;
+									for ( var i in obj.how_coll) {
+										//var counter = obj.opt_scheme[i];
+										//console.log(obj.opt_scheme[i]);
+										for (var j = 0; j < how_coll.options.length; ++j) {
+											if (how_coll.options[j].value === obj.how_coll[i])
+												how_coll.options[j].selected = true;
+										}
+									}
 
-	    document.getElementById('opt_num_days').value=obj.opt_num_days;
-			    document.getElementById('joint_acct').value=obj.joint_acct;
-		 document.getElementById('opt_phone').value=obj.opt_phone;
-		  document.getElementById('opt_addr1').value=obj.opt_addr1;
-		   document.getElementById('opt_addr2').value=obj.opt_addr2;
-		    document.getElementById('opt_web').value=obj.opt_web;
-			 document.getElementById('opt_city').value=obj.opt_city;
-			  document.getElementById('opt_zip').value=obj.opt_zip;
-			   document.getElementById('opt_state').value=obj.opt_state;
-			   document.getElementById('mail_opt_out_1').value=obj.mail_opt_out_1;
-			   document.getElementById('mail_opt_out_2').value=obj.mail_opt_out_2;
-			   document.getElementById('mail_opt_out_3').value=obj.mail_opt_out_3;
-			   document.getElementById('mail_opt_out_4').value=obj.mail_opt_out_4;
-			   document.getElementById('mail_opt_out_5').value=obj.mail_opt_out_5;
-			   
-				document.getElementById('other_src').value=obj.other_src;
-			    document.getElementById('protect').value=obj.protect;
-				document.getElementById('share_eday').value=obj.share_eday;
-				document.getElementById('share_mar').value=obj.share_mar;
-				document.getElementById('share_joint').value=obj.share_joint;
-				document.getElementById('share_aff').value=obj.share_aff;
-				document.getElementById('share_credit').value=obj.share_credit;
-				document.getElementById('share_aff_mar').value=obj.share_aff_mar;
-				document.getElementById('share_non_aff_mar').value=obj.share_non_aff_mar;
-			    document.getElementById('aff').value=obj.aff;
-			    document.getElementById('naff').value=obj.naff;
-			    document.getElementById('jmar').value=obj.jmar;
-				document.getElementById('other_info').value=obj.other_info;
-document.getElementById('state_law').value=obj.state_law;
-		
-            ['Read bytes: ', start + 1, ' - ', stop + 1,
-             ' of ', file.size, ' byte file'].join('');
-      }
-    };
+									document.getElementById('opt_num_days').value = obj.opt_num_days;
+									document.getElementById('joint_acct').value = obj.joint_acct;
+									document.getElementById('opt_phone').value = obj.opt_phone;
+									document.getElementById('opt_addr1').value = obj.opt_addr1;
+									document.getElementById('opt_addr2').value = obj.opt_addr2;
+									document.getElementById('opt_web').value = obj.opt_web;
+									document.getElementById('opt_city').value = obj.opt_city;
+									document.getElementById('opt_zip').value = obj.opt_zip;
+									document.getElementById('opt_state').value = obj.opt_state;
+									document.getElementById('mail_opt_out_1').value = obj.mail_opt_out_1;
+									document.getElementById('mail_opt_out_2').value = obj.mail_opt_out_2;
+									document.getElementById('mail_opt_out_3').value = obj.mail_opt_out_3;
+									document.getElementById('mail_opt_out_4').value = obj.mail_opt_out_4;
+									document.getElementById('mail_opt_out_5').value = obj.mail_opt_out_5;
 
-    var blob = file.slice(start, stop + 1);
-    reader.readAsBinaryString(blob);
-  }
-  
-  document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
-    if (evt.target.tagName.toLowerCase() == 'button') {
-      var startByte = evt.target.getAttribute('data-startbyte');
-      var endByte = evt.target.getAttribute('data-endbyte');
-      readBlob(startByte, endByte);
-    }
-  }, false);
-</script>
-</div>
+									document.getElementById('other_src').value = obj.other_src;
+									document.getElementById('protect').value = obj.protect;
+									document.getElementById('share_eday').value = obj.share_eday;
+									document.getElementById('share_mar').value = obj.share_mar;
+									document.getElementById('share_joint').value = obj.share_joint;
+									document.getElementById('share_aff').value = obj.share_aff;
+									document.getElementById('share_credit').value = obj.share_credit;
+									document.getElementById('share_aff_mar').value = obj.share_aff_mar;
+									document
+											.getElementById('share_non_aff_mar').value = obj.share_non_aff_mar;
+									document.getElementById('aff').value = obj.aff;
+									document.getElementById('naff').value = obj.naff;
+									document.getElementById('jmar').value = obj.jmar;
+									document.getElementById('other_info').value = obj.other_info;
+									document.getElementById('state_law').value = obj.state_law;
+
+									[ 'Read bytes: ', start + 1, ' - ',
+											stop + 1, ' of ', file.size,
+											' byte file' ].join('');
+								}
+							};
+
+							var blob = file.slice(start, stop + 1);
+							reader.readAsBinaryString(blob);
+						}
+
+						document
+								.querySelector('.readBytesButtons')
+								.addEventListener(
+										'click',
+										function(evt) {
+											if (evt.target.tagName
+													.toLowerCase() == 'button') {
+												var startByte = evt.target
+														.getAttribute('data-startbyte');
+												var endByte = evt.target
+														.getAttribute('data-endbyte');
+												readBlob(startByte, endByte);
+											}
+										}, false);
+					</script>
+				</div>
 				<form class="cbp-mc-form" action="generate.do" method="post">
-				<div id="accordion">
-				
-  <h3>About Your Institution</h3>
-  <div>
-  <fieldset>
-  <div class="cbp-mc-column">
-							
-							<label for="first_name">Financial Institution Name &nbsp;
-								<span style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Specify the Financial Institution Name."></span>
-							</label> 
-							<input type="text" id="fname" title="Enter your Financial Institution " required="required"
-								autofocus="autofocus" name="fname">
-								 </div><div class="cbp-mc-column">
-							<label for="bio">Who we Are? &nbsp; <span style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Specify the Details about the Financial Institution."></span>
-							</label>
-							
-							<textarea required="required"
-								title="Who is providing these notice?"
-								placeholder="Institution Information.." id="who_we_are"
-								name="who_we_are">
+					<div id="accordion">
+
+						<h3>About Your Institution</h3>
+						<div>
+							<fieldset>
+								<div class="cbp-mc-column">
+									<label for="first_name">Financial Institution Name
+										&nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="Specify the Financial Institution Name."></span>
+									</label> <input type="text" id="fname"
+										title="Enter your Financial Institution " required="required"
+										autofocus="autofocus" name="fname">
+								</div>
+								<div class="cbp-mc-column">
+									<label for="bio">Is there only one financial
+										institution to provide this policy notice, and is clearly
+										identified in the answer above? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Specify the Details about the Financial Institution."></span>
+									</label> <select data-single="true" id="name_identified"
+										name="name_identified" required="required"
+										title="Is financial instuitution name identified"
+										class="chosen-select" style="width: 350px;" tabindex="4"
+										onchange="change_display('fnames')">
+										<option value="Yes">Yes</option>
+										<option value="No">No</option>
+									</select>
+								</div>
+								<div class="cbp-mc-column">
+									<div id="fnames" style="display: none;">
+										<label for="bio">Please identify the name of
+											institutions providing this notice, each in a seperate line
+											&nbsp; <span style="display: inline;"
+											class="bp-icon bp-icon-about"
+											data-content="Specify the Details about the Financial Institution."></span>
+										</label>
+										<textarea title="Who is providing these notice?"
+											placeholder="Institution Information.." id="who_we_are"
+											name="who_we_are">
 							</textarea>
-													</div></fieldset>
-    
-  </div>
-  <h3>Limiting Information Sharing/Opt-Out's</h3>
-  <div>
-    <fieldset>
-					<div class="cbp-mc-column">		
-							
-							<label for="first_name">Opt Out Scheme &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Opt Out Schemes made available by the financial institution."></span></label>
-							<select id="opt_scheme" name="opt_scheme" required="required"
-								title="Choose Multiple Schemes."  multiple
-								 >
-								<option value="online">Online</option>
-								<option value="phone">Phone</option>
-								<option value="e-mail">Email</option>
-								<option value="mail">Mail-in</option>
-								<option value="DNT">Do Not Track</option>
-								<option value="cookies">Cookies</option>
-							</select>   
-							
-							<label for="opt_num_days">Number of days begin to share &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Number of days after which data are shared for a new customer."></span>
-							</label> 
-							<input required="required" type="number" id="opt_num_days" name="opt_num_days" placeholder="30"> 
-							
-							<label for="email">Opt Out - Phone Number &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Phone Number to perform opt out."></span>
-							</label> 
-							<input required="required" type="text" id="opt_phone" name="opt_phone" placeholder="412-478-1782"> 
-							
-							<label for="email">Opt Out - Online &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="URL link to perform opt out."></span>
-							</label> 
-							<input required="required" type="text" id="opt_web" name="opt_web"> 
-							<label for="country">Opt-Out for joint account holders  &nbsp; <span style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Only institutions that provide their joint accountholders the choice to opt 
+									</div>
+								</div>
+							</fieldset>
+
+						</div>
+						<h3>Limiting Information Sharing/Opt-Out's</h3>
+						<div>
+							<fieldset>
+								<div class="cbp-mc-column">
+									<label for="first_name">Opt Out Scheme &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Opt Out Schemes made available by the financial institution."></span></label>
+									<select id="opt_schema" name="opt_scheme" required="required"
+										title="Choose Multiple Schemes." class="chosen-select"
+										multiple="multiple" style="width: 350px;" tabindex="4"
+										onchange="multichange_display('opt_schema')">
+										<option value="Phone"
+											onclick="change_display(opt_phone_selected)">Phone</option>
+										<option value="e-mail">Online</option>
+										<option value="Postal">Postal</option>
+										<option value="Do Not Track">Do Not Track</option>
+										<option value="Cookies">Cookies</option>
+									</select>
+									<script>
+							function multichange_display(s_id){
+								var select=document.getElementById(s_id);
+								if(select.options[0].selected){
+									document.getElementById('opt_phone_selected').style.display="";
+								}else{
+									document.getElementById('opt_phone_selected').style.display="none";
+								}
+								if(select.options[1].selected){
+									document.getElementById('opt_web_selected').style.display="";
+								}else{
+									document.getElementById('opt_web_selected').style.display="none";
+								}
+								if(select.options[2].selected){
+									document.getElementById('opt_mail_selected').style.display="";
+								}else{
+									document.getElementById('opt_mail_selected').style.display="none";
+								}
+							}
+							</script>
+
+
+									<div id="opt_phone_selected" style="display: none;">
+										<label for="email">Opt Out - Phone Number &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Phone Number to perform opt out."></span>
+										</label> <input required="required" type="text" id="opt_phone"
+											name="opt_phone" placeholder="XXX-XXX-XXXX">
+									</div>
+									<div id="opt_web_selected" style="display: none">
+										<label for="email">Opt Out - Online &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="URL link to perform opt out."></span>
+										</label> <input required="required" type="text" id="opt_web"
+											name="opt_web">
+									</div>
+								</div>
+								<div class="cbp-mc-column">
+									<div id="opt_mail_selected" style="display: none;">
+										<label for="phone">Opt Out-Mailing Address1 &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Postal Mail Address to perform opt out."></span>
+										</label> <input required="required" type="text" id="opt_add1"
+											name="opt_add1" placeholder="Address1"> <label
+											for="phone">Opt Out-Mailing Address2 &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Postal Mail Address to perform opt out."></span>
+										</label> <input required="required" type="text" id="opt_add2"
+											name="opt_add2" placeholder="Address2"> <label
+											for="last_name">City &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Postal Mail's City to perform opt out."></span></label>
+										<input required="required" type="text" id="opt_city"
+											name="opt_city" placeholder="Pittsburgh"> <label
+											for="country">State &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Postal Mail's State to perform opt out."></span>
+										</label> <select required="required" id="opt_state" name="opt_state">
+											<option>Ohio</option>
+											<option>Pennsylvania</option>
+											<option>Texas</option>
+										</select> <label for="email">Zip &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Postal Mail's Zip code to perform opt out."></span>
+										</label> <input required="required" type="text" id="opt_zip"
+											name="opt_zip" placeholder="15213">
+									</div>
+								</div>
+								<div class="cbp-mc-column">
+									<label for="opt_num_days">Number of days begin to share
+										&nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="Number of days after which data are shared for a new customer."></span>
+									</label> <input required="required" type="number" id="opt_num_days"
+										name="opt_num_days" placeholder="30" min="30"> <label
+										for="country">Provide joint accountholders the choice
+										to opt out for only one accountholder &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Only institutions that provide their joint accountholders the choice to opt 
 								out for only one accountholder, in accordance with paragraph C.3(a)(5) of these Instructions,
 								 must include in the far left column of the mail-in form the following statement: “If you have
 								  a joint account, your choice(s) will apply to everyone on your account unless you mark below."></span>
-							</label> 
-							<select required="required" id="joint_acct" name="joint_acct">
-								<option value="choose">Choose an Option..</option>
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-							</select>
-								</div><div class="cbp-mc-column">
-								
-							
-							
-							<label for="phone">Opt Out-Mailing Address1 &nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about" data-content="Postal Mail Address to perform opt out."></span>
-							</label> 
-							<input required="required" type="text" id="opt_addr1" name="opt_addr1" placeholder="Address1">
-							 
-							<label for="phone">Opt Out-Mailing Address2 &nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about" data-content="Postal Mail Address to perform opt out."></span>
-							</label> 
-							<input required="required" type="text" id="opt_addr2" name="opt_addr2" placeholder="Address2">
-							
-							<label for="last_name">City &nbsp; <span style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Postal Mail's City to perform opt out."></span></label>
-							<input required="required" type="text" id="opt_city" name="opt_city" placeholder="Pittsburgh"> 
-							
-							<label for="country">State &nbsp; <span style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Postal Mail's State to perform opt out."></span>
-							</label> 
-							<select required="required" id="opt_state" name="opt_state">
-								<option value="choose">Choose a State</option>
-								<option value="OH">Ohio</option>
-								<option value="PA">Pennsylvania</option>
-								<option value="TX">Texas</option>
-							</select>
-							
-							<label for="email">Zip &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Postal Mail's Zip code to perform opt out."></span>
-							</label>
-							<input required="required" type="text" id="opt_zip" name="opt_zip" placeholder="15213">
-							
-							<label for="share1">Do you share personal information pursuant to section 603(d)(2)(A)(iii) of the FCRA? &nbsp; <span style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="If yes,the mail-in opt-out form has the following: Do not share information about my creditworthiness with your affiliates for their everyday business purposes"></span>
-							</label> 
-							<select required="required" id="mail_opt_out_1" name="mail_opt_out_1">
-								<option value="choose">Choose an Option</option>
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-								
-							</select>
-							</div><div class="cbp-mc-column">
-							<label for="share2">Do you incorporate section 624 of the FCRA in accord with paragraph C.2(d)(6) of these Instructions? 
-&nbsp;<span style="display: inline;" class="bp-icon bp-icon-about" data-content='If yes,  the mail-in opt-out form has the following : " Do not allow your affiliates to use my personal information to market to me."'></span>
-</label>
-<select id="mail_opt_out_2" name="mail_opt_out_2" required="required" title="Choose yes or no" >
-	<option value="choose">Choose an Option</option>
-	<option value="yes">Yes</option>
-	<option value="no">No</option>
-</select>
+									</label> <select data-single="true" required="required" id="joint_acct"
+										name="joint_acct">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+								</div>
 
-<label for="share3">Do you share personal information pursuant to Â§ 313.10(a) of Financial Privacy Rule?
-&nbsp;<span style="display: inline;" class="bp-icon bp-icon-about" data-content='If yes,the mail-in opt-out form  has the following : "Do not share my personal information with non-affiliates to market their products and services to me."'></span>
-</label>
-<select id="mail_opt_out_3" name="mail_opt_out_3" required="required"
-	title="Choose yes or no" >
-	<option value="choose">Choose an Option</option>
-	<option value="yes">Yes</option>
-	<option value="no">No</option>
-</select>
+								<!--<div class="cbp-mc-column">
+									<label for="first_name">Opt Out Scheme &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Opt Out Schemes made available by the financial institution."></span></label>
+									<select id="opt_scheme" name="opt_scheme" required="required"
+										title="Choose Multiple Schemes." multiple>
+										<option value="online">Online</option>
+										<option value="phone">Phone</option>
+										<option value="e-mail">Email</option>
+										<option value="mail">Mail-in</option>
+										<option value="DNT">Do Not Track</option>
+										<option value="cookies">Cookies</option>
+									</select> <label for="opt_num_days">Number of days begin to
+										share &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="Number of days after which data are shared for a new customer."></span>
+									</label> <input required="required" type="number" id="opt_num_days"
+										name="opt_num_days" placeholder="30"> <label
+										for="email">Opt Out - Phone Number &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Phone Number to perform opt out."></span>
+									</label> <input required="required" type="text" id="opt_phone"
+										name="opt_phone" placeholder="412-478-1782"> <label
+										for="email">Opt Out - Online &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="URL link to perform opt out."></span>
+									</label> <input required="required" type="text" id="opt_web"
+										name="opt_web"> <label for="country">Opt-Out
+										for joint account holders &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Only institutions that provide their joint accountholders the choice to opt 
+								out for only one accountholder, in accordance with paragraph C.3(a)(5) of these Instructions,
+								 must include in the far left column of the mail-in form the following statement: “If you have
+								  a joint account, your choice(s) will apply to everyone on your account unless you mark below."></span>
+									</label> <select required="required" id="joint_acct" name="joint_acct">
+										<option value="choose">Choose an Option..</option>
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+								</div>
+								<div class="cbp-mc-column">
 
-<label for="share4">Do you use the disclosure table to provide opt-out options beyond those required by Federal law?
-&nbsp;<span style="display: inline;" class="bp-icon bp-icon-about" data-content='A financial institution that chooses to offer an opt-out for its own marketing in the mail- in opt-out form must include one of the two following tatements: "Do not share my personal information to market to me." or "Do not use my personal information to market to me."'></span>
-</label>
-<select id="mail_opt_out_4" name="mail_opt_out_4" required="required"
-	title="Choose yes or no" >
-		<option value="choose">Choose an Option</option>
-	<option value="yes">Yes</option>
-	<option value="no">No</option>
-</select>
-<label for="first_name">Do you offer an opt-out for joint marketing?
-<span style="display: inline;" class="bp-icon bp-icon-about" data-content='A financial institution that chooses to offer an opt-out for joint marketing must include the following statement: "Do not share my personal information with other financial institutions to jointly market to me."'></span>
-</label>
-&nbsp;<select id="mail_opt_out_5" name="mail_opt_out_5" required="required"
-	title="Choose yes or no" >
-		<option value="choose">Choose an Option</option>
 
-	<option value="yes">Yes</option>
-	<option value="no">No</option>
-</select>
-							</div>
-						</fieldset>
-  </div>
-  <h3>Information Gathering </h3>
-  <div>
-   <fieldset>
-   <div class="cbp-mc-column">
-							<label for="first_name">What do we Collect? &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="What type of information is collected by us?."></span>
-							</label>
-							
-							<select id="what_coll" name="what_coll" required="required"
-								title="What Information is Collected?" 
-								multiple >
-								<option value="choose">Choose Information Type..</option>
-								<option value="ssn">SSN</option>
-								<option value="income">income</option>
-								<option value="balance">account balances</option>
-								<option value="pay_his">payment history</option>
-								<option value="tr_his">transaction history</option>
-								<option value="lo_his">transaction or loss history</option>
-								<option value="cr_his">credit history</option>
-								<option value="cr_sco">credit scores</option>
-								<option value="assets">assets</option>
-								<option value="in_exp">investment experience</option>
-								<option value="cr_ins">credit-based insurance scores</option>
-								<option value="ins_cl">insurance claim history</option>
-								<option value="med_inf">medical information</option>
-								<option value="ove_his">overdraft history</option>
-								<option value="pur_his">purchase history</option>
-								<option value="acc_tra">account transactions</option>
-								<option value="ris_tol">risk tolerance</option>
-								<option value="med_rel">medical-related debts</option>
-								<option value="cr_car">credit card or other debt</option>
-								<option value="mor_rat">mortgage rates and payments</option>
-								<option value="ret_ass">retirement assets</option>
-								<option value="che_acc">checking account information</option>
-								<option value="emp_info">employment information</option>
-								<option value="wire_tran">wire transfer instructions</option>
-							</select> 
-								<label for="other_src">Other source of data: &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="What other source of data?"></span>
-							</label>
-							
-							<select id="other_src" name="other_src" required="required"
-								title="Other source of data:" class="chosen-select"
-								  tabindex="4">
-								 <option value="choose">Choose an option..</option>
-								<option value="af_bu">Affiliates and/or credit bureaus</option>
-								<option value="oth_cmp">Not from affiliates or credit bureaus but other companies</option>
-								<option value="none">None</option>
-							</select> 
-	</div><div class="cbp-mc-column">	
-		
-							
-							<label>How do we collect your data? &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="How do we gather the information from you?"></span>
-							</label>
-							
-							<select id="how_coll" name="how_coll" required="required"
-								title="How do we collect your Information?"
-								 multiple 
-								>
-								<option value="choose">Data Collection type..</option>
-								<option value="open">open an account</option>
-								<option value="dep">deposit money</option>
-								<option value="pay bill">pay your bills</option>
-								<option value="app_loan">apply for a loan</option>
-								<option value="use_card">use your credit or debit card</option>
-								<option value="seek_tax">seek financial or tax advice</option>
-								<option value="app_ins">apply for insurance</option>
-								<option value="pay_ins">pay insurance premiums</option>
-								<option value="file_ins">file an insurance claim</option>
-								<option value="seek_adv">seek advice about your
-									investments</option>
-								<option value="buy_sec">buy securities from us</option>
-								<option value="sell_sec">sell securities to us</option>
-								<option value="dir_buy">direct us to buy securities</option>
-								<option value="dir_sell">direct us to sell your
-									securities</option>
-								<option value="make_dep">make deposits or withdrawals
-									from your account</option>
-								<option value="ent_inv">enter into an investment
-									advisory contract</option>
-								<option value="inc_inf">give us your income information</option>
-								<option value="pro_emp">provide employment information</option>
-								<option value="give_emp">give us your employment
-									history</option>
-								<option value="tell_por">tell us about your investment
-									or retirement portfolio</option>
-								<option value="tell_ear">tell us about your investment
-									or retirement earnings</option>
-								<option value="app_fin">apply for financing</option>
-								<option value="app_lea">apply for a lease</option>
-								<option value="pro_acc">provide account information</option>
-								<option value="giv_con">give us your contact
-									information</option>
-								<option value="pay_che">pay us by check</option>
-								<option value="giv_wag">give us your wage statements</option>
-								<option value="pro_mor">provide your mortgage
-									information</option>
-								<option value="mak_wir">make a wire transfer</option>
-								<option value="who_rec">tell us who receives the money</option>
-								<option value="where_send">tell us where to send the
-									money</option>
-								<option value="show_gov">show your government-issued ID</option>
-								<option value="show_lic">show your driver’s license</option>
-								<option value="ord_comm">order a commodity futures or
-									option trade</option>
-							</select> 
-						
-							
-							<label for="protect">How do we Protect your data? &nbsp;
-								<span style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Security Measures taken by us to protect your information."></span>
-							</label>
-							<textarea id="protect" placeholder="Information Security Mechanisms"
-								title="How we protect your data?" name="protect"></textarea>
-</div>
-						</fieldset>
-  </div>
-  <h3>Information Sharing</h3>
-  <div>
-  <fieldset>
-  <div class="cbp-mc-column">
-							<label for="share everyday">Share for Everyday business?
-								&nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about"
-								data-content="To process  transactions, maintain your accounts, respond to court orders, legal investigations or report to credit bureaus."></span>
-							</label> 
-							<select required="required" id="share_eday" name="share_eday">
-								<option>Choose an Option</option>
-								<option value="y_w_opt">Yes with Opt Out</option>
-								<option value="y_wo_opt">Yes without Opt Out</option>
-								<option value="not_share">No</option>
-							</select> 
-							
-							<label for="share everyday">Share for Our Marketing
-								purpose? &nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about"
-								data-content="To offer our products and services to customer."></span>
-							</label> 
-							<select required="required" id="share_mar" name="share_mar">
-								<option>Choose an Option</option>
-								<option value="y_w_opt">Yes with Opt Out</option>
-								<option value="y_wo_opt">Yes without Opt Out</option>
-								<option value="not_share">No</option>
-							</select> 
-							
-							<label for="share everyday">Share for Joint Marketing
-								with Others? &nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about"
-								data-content="To jointly market products with other financial institutions."></span>
-							</label> 
-							<select required="required" id="share_joint" name="share_joint">
-								<option>Choose an Option</option>
-								<option value="y_w_opt">Yes with Opt Out</option>
-								<option value="y_wo_opt">Yes without Opt Out</option>
-								<option value="not_share">No</option>
-							</select> 
-							
-							<label for="share everyday">Share for Affiliates daily
-								business activities? &nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about"
-								data-content="Data about Customer Transactions and experiences."></span>
-							</label> 
-							<select required="required" id="share_aff" name="share_aff">
-								<option>Choose an Option</option>
-								<option value="y_w_opt">Yes with Opt Out</option>
-								<option value="y_wo_opt">Yes without Opt Out</option>
-								<option value="not_share">No</option>
-							</select> 
-							
-							</div><div class="cbp-mc-column">
-							
-							<label for="share everyday">Share Creditworthiness with
-								Affiliates? &nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about"
-								data-content="Data about customer creditworthiness."></span>
-							</label> 
-							<select required="required" id="share_credit"
-								name="share_credit">
-								<option>Choose an Option</option>
-								<option value="y_w_opt">Yes with Opt Out</option>
-								<option value="y_wo_opt">Yes without Opt Out</option>
-								<option value="not_share">No</option>
-							</select> 
-							
-							<label for="share everyday">Share with Affiliates for
-								Marketing? &nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about"
-								data-content="To market products by our affiliates."></span>
-							</label> 
-							<select required="required" id="share_aff_mar"
-								name="share_aff_mar">
-								<option>Choose an Option</option>
-								<option value="omit">Omit</option>
-								<option value="y_w_opt">Yes with Opt Out</option>
-								<option value="y_wo_opt">Yes without Opt Out</option>
-								<option value="not_share">No</option>
-							</select> 
-							
-							<label for="share everyday">Share with Non-Affiliates
-								for Marketing? &nbsp; <span style="display: inline;"
-								class="bp-icon bp-icon-about"
-								data-content="To market products by non-affiliates."></span>
-							</label> 
-							<select required="required" id="share_non_aff_mar"
-								name="share_non_aff_mar">
-								<option>Choose an Option</option>
-								<option value="y_w_opt">Yes with Opt Out</option>
-								<option value="y_wo_opt">Yes without Opt Out</option>
-								<option value="not_share">No</option>
-							</select>
-							</div>
-						</fieldset>
-  </div>
-  <h3>Affiliate & Other's Information</h3>		
-  <div>
-			
-						<fieldset>
-						 <div class="cbp-mc-column">
-							<label for="bio">Affiliate Information &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Companies related by common control."></span></label>
-							<textarea required="required" placeholder="Specify Affiliates"
-								title="Affiliates Information" id="aff" name="aff"></textarea>
-							<label for="bio">Non Affiliate Information &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Companies not related by common control."></span></label>
-							<textarea required="required"
-								placeholder="Specify Non Affiliates"
-								title="Non Affiliates Information" id="naff" name="naff"></textarea>
-							<label for="bio">Joint Marketing Information&nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Non affiliated companies with which an agreement is made to offer marketing."></span></label>
-							<textarea required="required"
-								placeholder="Specify Joint Marketing Information"
-								title="Joint Marketing Information" id="jmar" name="jmar"></textarea>
-							 </div><div class="cbp-mc-column">
-							<label for="bio">Describe state privacy law provisions in the "Other information"? &nbsp; 
-								<span style="display: inline;"
-								class="bp-icon bp-icon-about"
-								data-content='Describe state privacy law provisions in the "Other information"?'></span>
-							</label> 
-							<select required="required" id="state_law"
-								name="state_law">
-								<option value="choose">Choose an option..</option>
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-							</select>
-							
-							<label for="bio">Other Information &nbsp; <span
-								style="display: inline;" class="bp-icon bp-icon-about"
-								data-content="Miscellaneous Information about the financial institute."></span></label>
-							<textarea required="required" placeholder="Specify Other Details"
-								title="Other Information" id="other_info" name="other_info"></textarea>
-</div>
-						</fieldset>
-  </div>
-  
-</div>
-<div class="cbp-mc-submit-wrap">
-						<input class="cbp-mc-submit" name="submit_button" type="submit" value="Send your data" />
+
+									<label for="phone">Opt Out-Mailing Address1 &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Postal Mail Address to perform opt out."></span>
+									</label> <input required="required" type="text" id="opt_addr1"
+										name="opt_addr1" placeholder="Address1"> <label
+										for="phone">Opt Out-Mailing Address2 &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Postal Mail Address to perform opt out."></span>
+									</label> <input required="required" type="text" id="opt_addr2"
+										name="opt_addr2" placeholder="Address2"> <label
+										for="last_name">City &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Postal Mail's City to perform opt out."></span></label>
+									<input required="required" type="text" id="opt_city"
+										name="opt_city" placeholder="Pittsburgh"> <label
+										for="country">State &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Postal Mail's State to perform opt out."></span>
+									</label> <select required="required" id="opt_state" name="opt_state">
+										<option value="choose">Choose a State</option>
+										<option value="OH">Ohio</option>
+										<option value="PA">Pennsylvania</option>
+										<option value="TX">Texas</option>
+									</select> <label for="email">Zip &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Postal Mail's Zip code to perform opt out."></span>
+									</label> <input required="required" type="text" id="opt_zip"
+										name="opt_zip" placeholder="15213"> <label
+										for="share1">Do you share personal information
+										pursuant to section 603(d)(2)(A)(iii) of the FCRA? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="If yes,the mail-in opt-out form has the following: Do not share information about my creditworthiness with your affiliates for their everyday business purposes"></span>
+									</label> <select required="required" id="mail_opt_out_1"
+										name="mail_opt_out_1">
+										<option value="choose">Choose an Option</option>
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+
+									</select>
+								</div>
+								<div class="cbp-mc-column">
+									<label for="share2">Do you incorporate section 624 of
+										the FCRA in accord with paragraph C.2(d)(6) of these
+										Instructions? &nbsp;<span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content='If yes,  the mail-in opt-out form has the following : " Do not allow your affiliates to use my personal information to market to me."'></span>
+									</label> <select id="mail_opt_out_2" name="mail_opt_out_2"
+										required="required" title="Choose yes or no">
+										<option value="choose">Choose an Option</option>
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select> <label for="share3">Do you share personal information
+										pursuant to Â§ 313.10(a) of Financial Privacy Rule? &nbsp;<span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content='If yes,the mail-in opt-out form  has the following : "Do not share my personal information with non-affiliates to market their products and services to me."'></span>
+									</label> <select id="mail_opt_out_3" name="mail_opt_out_3"
+										required="required" title="Choose yes or no">
+										<option value="choose">Choose an Option</option>
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select> <label for="share4">Do you use the disclosure table to
+										provide opt-out options beyond those required by Federal law?
+										&nbsp;<span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content='A financial institution that chooses to offer an opt-out for its own marketing in the mail- in opt-out form must include one of the two following tatements: "Do not share my personal information to market to me." or "Do not use my personal information to market to me."'></span>
+									</label> <select id="mail_opt_out_4" name="mail_opt_out_4"
+										required="required" title="Choose yes or no">
+										<option value="choose">Choose an Option</option>
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select> <label for="first_name">Do you offer an opt-out for
+										joint marketing? <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content='A financial institution that chooses to offer an opt-out for joint marketing must include the following statement: "Do not share my personal information with other financial institutions to jointly market to me."'></span>
+									</label> &nbsp;<select id="mail_opt_out_5" name="mail_opt_out_5"
+										required="required" title="Choose yes or no">
+										<option value="choose">Choose an Option</option>
+
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+								</div>-->
+							</fieldset>
+						</div>
+						<h3>Information Gathering</h3>
+						<div>
+							<fieldset>
+								<div class="cbp-mc-column">
+									<label for="first_name">What do we Collect? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="What type of information is collected by us?."></span>
+									</label> <select id="what_coll" name="what_coll" required="required"
+										title="What Information is Collected?" class="chosen-select"
+										multiple="multiple" style="width: 350px;" tabindex="4">
+										<option value="ssn" disabled="disabled" selected="selected">SSN</option>
+										<option value="income">income</option>
+										<option value="balance">account balances</option>
+										<option value="pay_his">payment history</option>
+										<option value="tr_his">transaction history</option>
+										<option value="lo_his">transaction or loss history</option>
+										<option value="cr_his">credit history</option>
+										<option value="cr_sco">credit scores</option>
+										<option value="assets">assets</option>
+										<option value="in_exp">investment experience</option>
+										<option value="cr_ins">credit-based insurance scores</option>
+										<option value="ins_cl">insurance claim history</option>
+										<option value="med_inf">medical information</option>
+										<option value="ove_his">overdraft history</option>
+										<option value="pur_his">purchase history</option>
+										<option value="acc_tra">account transactions</option>
+										<option value="ris_tol">risk tolerance</option>
+										<option value="med_rel">medical-related debts</option>
+										<option value="cr_car">credit card or other debt</option>
+										<option value="mor_rat">mortgage rates and payments</option>
+										<option value="ret_ass">retirement assets</option>
+										<option value="che_acc">checking account information</option>
+										<option value="emp_info">employment information</option>
+										<option value="wire_tran">wire transfer instructions</option>
+									</select>
+								</div>
+								<div class="cbp-mc-column">
+									<label>How do we collect your data? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="How do we gather the information from you?"></span>
+									</label> <select id="how_coll" name="how_coll" required="required"
+										title="How do we collect your Information?"
+										class="chosen-select" multiple="multiple"
+										style="width: 350px;" tabindex="4">
+										<option>Data Collection type..</option>
+										<option value="open">open an account</option>
+										<option value="dep">deposit money</option>
+										<option value="pay bill">pay your bills</option>
+										<option value="app_loan">apply for a loan</option>
+										<option value="use_card">use your credit or debit
+											card</option>
+										<option value="seek_tax">seek financial or tax advice</option>
+										<option value="app_ins">apply for insurance</option>
+										<option value="pay_ins">pay insurance premiums</option>
+										<option value="file_ins">file an insurance claim</option>
+										<option value="seek_adv">seek advice about your
+											investments</option>
+										<option value="buy_sec">buy securities from us</option>
+										<option value="sell_sec">sell securities to us</option>
+										<option value="dir_buy">direct us to buy securities</option>
+										<option value="dir_sell">direct us to sell your
+											securities</option>
+										<option value="make_dep">make deposits or withdrawals
+											from your account</option>
+										<option value="ent_inv">enter into an investment
+											advisory contract</option>
+										<option value="inc_inf">give us your income
+											information</option>
+										<option value="pro_emp">provide employment
+											information</option>
+										<option value="give_emp">give us your employment
+											history</option>
+										<option value="tell_por">tell us about your
+											investment or retirement portfolio</option>
+										<option value="tell_ear">tell us about your
+											investment or retirement earnings</option>
+										<option value="app_fin">apply for financing</option>
+										<option value="app_lea">apply for a lease</option>
+										<option value="pro_acc">provide account information</option>
+										<option value="giv_con">give us your contact
+											information</option>
+										<option value="pay_che">pay us by check</option>
+										<option value="giv_wag">give us your wage statements</option>
+										<option value="pro_mor">provide your mortgage
+											information</option>
+										<option value="mak_wir">make a wire transfer</option>
+										<option value="who_rec">tell us who receives the
+											money</option>
+										<option value="where_send">tell us where to send the
+											money</option>
+										<option value="show_gov">show your government-issued
+											ID</option>
+										<option value="show_lic">show your driver’s license</option>
+										<option value="ord_comm">order a commodity futures or
+											option trade</option>
+									</select>
+								</div>
+								<div class="cbp-mc-column">
+									<label for="other_src">Other source of data: &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="What other source of data?"></span>
+									</label> <select data-single="true" id="other_src" name="other_src"
+										required="required" title="Other source of data:"
+										class="chosen-select" style="width: 350px;" tabindex="4">
+										<option value="af_bu">Affiliates and/or credit
+											bureaus</option>
+										<option value="oth_cmp">Not from above, but other
+											companies</option>
+										<option value="none">None</option>
+									</select> <label for="protect">How do you protect customers'
+										data?(maximum of 30 words) &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Security Measures taken by us to protect your information."></span>
+									</label>
+									<textarea id="protect"
+										placeholder="Information Security Mechanisms"
+										title="How we protect your data?" name="protect"></textarea>
+								</div>
+								<!--<div class="cbp-mc-column">
+									<label for="first_name">What do we Collect? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="What type of information is collected by us?."></span>
+									</label> <select id="what_coll" name="what_coll" required="required"
+										title="What Information is Collected?" multiple>
+										<option value="choose">Choose Information Type..</option>
+										<option value="ssn">SSN</option>
+										<option value="income">income</option>
+										<option value="balance">account balances</option>
+										<option value="pay_his">payment history</option>
+										<option value="tr_his">transaction history</option>
+										<option value="lo_his">transaction or loss history</option>
+										<option value="cr_his">credit history</option>
+										<option value="cr_sco">credit scores</option>
+										<option value="assets">assets</option>
+										<option value="in_exp">investment experience</option>
+										<option value="cr_ins">credit-based insurance scores</option>
+										<option value="ins_cl">insurance claim history</option>
+										<option value="med_inf">medical information</option>
+										<option value="ove_his">overdraft history</option>
+										<option value="pur_his">purchase history</option>
+										<option value="acc_tra">account transactions</option>
+										<option value="ris_tol">risk tolerance</option>
+										<option value="med_rel">medical-related debts</option>
+										<option value="cr_car">credit card or other debt</option>
+										<option value="mor_rat">mortgage rates and payments</option>
+										<option value="ret_ass">retirement assets</option>
+										<option value="che_acc">checking account information</option>
+										<option value="emp_info">employment information</option>
+										<option value="wire_tran">wire transfer instructions</option>
+									</select> <label for="other_src">Other source of data: &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="What other source of data?"></span>
+									</label> <select id="other_src" name="other_src" required="required"
+										title="Other source of data:" class="chosen-select"
+										tabindex="4">
+										<option value="choose">Choose an option..</option>
+										<option value="af_bu">Affiliates and/or credit
+											bureaus</option>
+										<option value="oth_cmp">Not from affiliates or credit
+											bureaus but other companies</option>
+										<option value="none">None</option>
+									</select>
+								</div>
+								<div class="cbp-mc-column">
+
+
+									<label>How do we collect your data? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="How do we gather the information from you?"></span>
+									</label> <select id="how_coll" name="how_coll" required="required"
+										title="How do we collect your Information?" multiple>
+										<option value="choose">Data Collection type..</option>
+										<option value="open">open an account</option>
+										<option value="dep">deposit money</option>
+										<option value="pay bill">pay your bills</option>
+										<option value="app_loan">apply for a loan</option>
+										<option value="use_card">use your credit or debit
+											card</option>
+										<option value="seek_tax">seek financial or tax advice</option>
+										<option value="app_ins">apply for insurance</option>
+										<option value="pay_ins">pay insurance premiums</option>
+										<option value="file_ins">file an insurance claim</option>
+										<option value="seek_adv">seek advice about your
+											investments</option>
+										<option value="buy_sec">buy securities from us</option>
+										<option value="sell_sec">sell securities to us</option>
+										<option value="dir_buy">direct us to buy securities</option>
+										<option value="dir_sell">direct us to sell your
+											securities</option>
+										<option value="make_dep">make deposits or withdrawals
+											from your account</option>
+										<option value="ent_inv">enter into an investment
+											advisory contract</option>
+										<option value="inc_inf">give us your income
+											information</option>
+										<option value="pro_emp">provide employment
+											information</option>
+										<option value="give_emp">give us your employment
+											history</option>
+										<option value="tell_por">tell us about your
+											investment or retirement portfolio</option>
+										<option value="tell_ear">tell us about your
+											investment or retirement earnings</option>
+										<option value="app_fin">apply for financing</option>
+										<option value="app_lea">apply for a lease</option>
+										<option value="pro_acc">provide account information</option>
+										<option value="giv_con">give us your contact
+											information</option>
+										<option value="pay_che">pay us by check</option>
+										<option value="giv_wag">give us your wage statements</option>
+										<option value="pro_mor">provide your mortgage
+											information</option>
+										<option value="mak_wir">make a wire transfer</option>
+										<option value="who_rec">tell us who receives the
+											money</option>
+										<option value="where_send">tell us where to send the
+											money</option>
+										<option value="show_gov">show your government-issued
+											ID</option>
+										<option value="show_lic">show your driver’s license</option>
+										<option value="ord_comm">order a commodity futures or
+											option trade</option>
+									</select> <label for="protect">How do we Protect your data?
+										&nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="Security Measures taken by us to protect your information."></span>
+									</label>
+									<textarea id="protect"
+										placeholder="Information Security Mechanisms"
+										title="How we protect your data?" name="protect"></textarea>
+								</div>-->
+							</fieldset>
+						</div>
+						<h3>Information Sharing</h3>
+						<div>
+							<fieldset>
+								<div class="cbp-mc-column">
+									<label for="share everyday">Do you share customers'
+										personal information for Everyday business, and provide an
+										opt-out? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To process transactions, maintain your accounts, respond to court orders, legal investigations or report to credit bureaus."></span>
+									</label> <select data-single="true" required="required" id="share_eday"
+										name="share_eday">
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select> <label for="share everyday">Do you share customers'
+										personal information for our marketing purpose, and provide an
+										opt-out? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To offer our products and services to customer."></span>
+									</label> <select data-single="true" required="required" id="share_mar"
+										name="share_mar">
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select> <label for="share everyday">Do you share customers'
+										personal information for Joint Marketing with others, and
+										provide an opt-out?&nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To jointly market products with other financial institutions."></span>
+									</label> <select data-single="true" required="required"
+										id="share_joint" name="share_joint">
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select>
+								</div>
+								<div class="cbp-mc-column">
+									<label for="share everyday">Do you share customers'
+										personal information about transactions and experiences for
+										Affiliates daily business activities, and provide an opt-out?
+										&nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="Data about Customer Transactions and experiences."></span>
+									</label> <select data-single="true" required="required" id="share_aff"
+										name="share_aff">
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select> <label for="share everyday">Do you share customers'
+										personal information for Creditworthiness with Affiliates? You
+										must provide an opt-out if you share information.&nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Data about customer creditworthiness."></span>
+									</label> <select data-single="true" required="required"
+										id="share_credit" name="share_credit">
+										<option value="y_w_opt">Yes and must provide Opt Out</option>
+										<option value="not_share">No</option>
+									</select>
+								</div>
+								<div class="cbp-mc-column">
+									<label>Do you comform to any of the following
+										qualifications?</label>
+									<ul>
+										<font size="3px"><li>the institution does not have
+												affiliates (or does not disclose personal information to its
+												affiliates);</li>
+											<li>the institution’s affiliates do not use personal
+												information in a manner that requires an opt-out;</li>
+											<li>or the institution provides the affiliate marketing
+												notice separately.</li></font>
+									</ul>
+									<select data-single="true" name="share_aff_mar_q"
+										id="share_aff_mar_q"
+										onchange="change_display('share_aff_ques')">
+										<option value="Yes">Yes</option>
+										<option value="No">No</option>
+									</select>
+									<div id="share_aff_ques" style="display: none;">
+										<label for="share everyday">Do you share customers'
+											personal information with Affiliates for Marketing, and
+											provide an opt-out? &nbsp; <span style="display: inline;"
+											class="bp-icon bp-icon-about"
+											data-content="To market products by our affiliates."></span>
+										</label> <select data-single="true" required="required"
+											id="share_aff_mar" name="share_aff_mar">
+											<option value="y_w_opt">Yes with Opt Out</option>
+											<option value="y_wo_opt">Yes without Opt Out</option>
+											<option value="not_share">No</option>
+										</select>
+									</div>
+									<label for="share everyday">Share with Non-Affiliates
+										for Marketing? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To market products by non-affiliates."></span>
+									</label> <select data-single="true" required="required"
+										id="share_non_aff_mar" name="share_non_aff_mar">
+										<option value="y_w_opt">Yes and must provide Opt Out</option>
+										<!--<option value="y_wo_opt">Yes without Opt Out</option>-->
+										<option value="not_share">No</option>
+									</select>
+								</div>
+
+
+								<!-- <div class="cbp-mc-column">
+									<label for="share everyday">Share for Everyday
+										business? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To process  transactions, maintain your accounts, respond to court orders, legal investigations or report to credit bureaus."></span>
+									</label> <select required="required" id="share_eday" name="share_eday">
+										<option>Choose an Option</option>
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select> <label for="share everyday">Share for Our Marketing
+										purpose? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To offer our products and services to customer."></span>
+									</label> <select required="required" id="share_mar" name="share_mar">
+										<option>Choose an Option</option>
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select> <label for="share everyday">Share for Joint Marketing
+										with Others? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To jointly market products with other financial institutions."></span>
+									</label> <select required="required" id="share_joint"
+										name="share_joint">
+										<option>Choose an Option</option>
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select> <label for="share everyday">Share for Affiliates daily
+										business activities? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="Data about Customer Transactions and experiences."></span>
+									</label> <select required="required" id="share_aff" name="share_aff">
+										<option>Choose an Option</option>
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select>
+
+								</div>
+								<div class="cbp-mc-column">
+
+									<label for="share everyday">Share Creditworthiness with
+										Affiliates? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="Data about customer creditworthiness."></span>
+									</label> <select required="required" id="share_credit"
+										name="share_credit">
+										<option>Choose an Option</option>
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select> <label for="share everyday">Share with Affiliates for
+										Marketing? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To market products by our affiliates."></span>
+									</label> <select required="required" id="share_aff_mar"
+										name="share_aff_mar">
+										<option>Choose an Option</option>
+										<option value="omit">Omit</option>
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select> <label for="share everyday">Share with Non-Affiliates
+										for Marketing? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To market products by non-affiliates."></span>
+									</label> <select required="required" id="share_non_aff_mar"
+										name="share_non_aff_mar">
+										<option>Choose an Option</option>
+										<option value="y_w_opt">Yes with Opt Out</option>
+										<option value="y_wo_opt">Yes without Opt Out</option>
+										<option value="not_share">No</option>
+									</select>
+								</div>-->
+							</fieldset>
+						</div>
+						<h3>Affiliate & Other's Information</h3>
+						<div>
+							<fieldset>
+								<div class="cbp-mc-column">
+									<label for="bio">Do you have any affiliate? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="To market products by our affiliates."></span>
+									</label> <select data-single="true" required="required" id="aff_have"
+										name="aff_have" onchange="change_display('aff_have_selected')">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+									<div id="aff_have_selected">
+										<label for="bio">Do you share customers' personal
+											information with your affiliates? &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="To market products by our affiliates."></span>
+										</label> <select data-single="true" required="required" id="aff_share"
+											name="aff_share"
+											onchange="change_display('aff_share_selected')">
+											<option value="yes">Yes</option>
+											<option value="no">No</option>
+										</select>
+										<div id="aff_share_selected">
+											<label for="bio">Specify your affilates, one affilate
+												per line &nbsp; <span style="display: inline;"
+												class="bp-icon bp-icon-about"
+												data-content="Companies related by common control."></span>
+											</label>
+											<textarea required="required"
+												placeholder="Specify Affiliates"
+												title="Affiliates Information" id="aff" name="aff"></textarea>
+											<label for="bio">Specify financial companies you
+												share information with, one company per line &nbsp; <span
+												style="display: inline;" class="bp-icon bp-icon-about"
+												data-content="Companies related by common control."></span>
+											</label>
+											<textarea required="required" placeholder="Specify companies"
+												title="Financial Company Information" id="aff_f"
+												name="aff_f"></textarea>
+											<label for="bio">Specify nonfinancial companies you
+												share information with, one company per line &nbsp; <span
+												style="display: inline;" class="bp-icon bp-icon-about"
+												data-content="Companies related by common control."></span>
+											</label>
+											<textarea required="required"
+												placeholder="Specify Affiliates"
+												title="Affiliates Information" id="aff_nf" name="aff_nf"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="cbp-mc-column">
+									<label for="bio">Do you share customers' personal
+										information with any nonaffiliate? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="To market products by our affiliates."></span>
+									</label> <select data-single="true" required="required" id="naff_share"
+										name="naff_share"
+										onchange="change_display('naff_share_selected')">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+									<div id="naff_share_selected">
+										<label for="bio">Specify list of nonaffiliate you
+											share information with, one per line &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="You can give catefories of companies such as mortgage companies, insurance companies, direct marketing companies, and nonprofit organizations."></span>
+										</label>
+										<textarea required="required"
+											placeholder="Specify Non Affiliates"
+											title="Non Affiliates Information" id="naff" name="naff"></textarea>
+									</div>
+									<label for="bio">Do you engage in joint marketing?
+										&nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content="To market products by our affiliates."></span>
+									</label> <select data-single="true" required="required"
+										id="jamr_engage" name="jamr_engage"
+										onchange="change_display('jmar_engage_selected')">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+									<div id="jmar_engage_selected">
+										<label for="bio">Do you share personal information for
+											joint marketing? &nbsp; <span style="display: inline;"
+											class="bp-icon bp-icon-about"
+											data-content="To market products by our affiliates."></span>
+										</label> <select data-single="true" required="required"
+											id="jmar_share" name="jmar_share"
+											onchange="change_display('jmar_share_selected')">
+											<option value="yes">Yes</option>
+											<option value="no">No</option>
+										</select>
+										<div id="jmar_share_selected" style="display: none">
+											<label for="bio">Specify joint marketing companies
+												you share information with, one per line &nbsp; <span
+												style="display: inline;" class="bp-icon bp-icon-about"
+												data-content="Non affiliated companies with which an agreement is made to offer marketing."></span>
+											</label>
+											<textarea required="required"
+												placeholder="Specify Joint Marketing Information"
+												title="Joint Marketing Information" id="jmar" name="jmar"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="cbp-mc-column">
+									<label for="bio">Do you have other important
+										information to state about State and/or international privacy
+										law information? &nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content='Describe state privacy law provisions in the "Other information"?'></span>
+									</label> <select required="required" id="other_law" name="other_law"
+										onchange="change_dispaly('other_law_selected')">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+									<div id="other_law_selected">
+										<label for="bio">Specify your information about State
+											and/or international privacy law information. &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Miscellaneous Information about the financial institute."></span>
+										</label>
+										<textarea required="required" placeholder="Specify Details"
+											title="Other Information" id="other_law_detail"
+											name="other_law_detail"></textarea>
+									</div>
+									<label for="bio">Do you have other important
+										information to state about Acknowledgment of receipt form?
+										&nbsp; <span style="display: inline;"
+										class="bp-icon bp-icon-about"
+										data-content='Describe state privacy law provisions in the "Other information"?'></span>
+									</label> <select required="required" id="other_ack" name="other_ack"
+										onchange="change_dispaly('other_ack_selected')">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+									<div id="other_ack_selected">
+										<label for="bio">Specify your information about
+											Acknowledgment of receipt form. &nbsp; <span
+											style="display: inline;" class="bp-icon bp-icon-about"
+											data-content="Miscellaneous Information about the financial institute."></span>
+										</label>
+										<textarea required="required" placeholder="Specify Details"
+											title="Other Information" id="other_ack_detail"
+											name="other_ack_detail"></textarea>
+									</div>
+								</div>
+
+								<!-- <div class="cbp-mc-column">
+									<label for="bio">Affiliate Information &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Companies related by common control."></span></label>
+									<textarea required="required" placeholder="Specify Affiliates"
+										title="Affiliates Information" id="aff" name="aff"></textarea>
+									<label for="bio">Non Affiliate Information &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Companies not related by common control."></span></label>
+									<textarea required="required"
+										placeholder="Specify Non Affiliates"
+										title="Non Affiliates Information" id="naff" name="naff"></textarea>
+									<label for="bio">Joint Marketing Information&nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Non affiliated companies with which an agreement is made to offer marketing."></span></label>
+									<textarea required="required"
+										placeholder="Specify Joint Marketing Information"
+										title="Joint Marketing Information" id="jmar" name="jmar"></textarea>
+								</div>
+								<div class="cbp-mc-column">
+									<label for="bio">Describe state privacy law provisions
+										in the "Other information"? &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content='Describe state privacy law provisions in the "Other information"?'></span>
+									</label> <select required="required" id="state_law" name="state_law">
+										<option value="choose">Choose an option..</option>
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select> <label for="bio">Other Information &nbsp; <span
+										style="display: inline;" class="bp-icon bp-icon-about"
+										data-content="Miscellaneous Information about the financial institute."></span></label>
+									<textarea required="required"
+										placeholder="Specify Other Details" title="Other Information"
+										id="other_info" name="other_info"></textarea>
+								</div>-->
+							</fieldset>
+						</div>
+
 					</div>
-		</form>	</section>
+					<div class="cbp-mc-submit-wrap">
+						<input class="cbp-mc-submit" name="submit_button" type="submit"
+							value="Send your data" />
+					</div>
+				</form>
+			</section>
 		</div>
 		<!-- /content -->
 	</div>
@@ -1474,6 +1953,22 @@ document.getElementById('state_law').value=obj.state_law;
 	</p>
 
 	</div>
+	<script>
+	function change_display(div_id) {
+		if (document.getElementById(div_id).style.display=="none"){
+			document.getElementById(div_id).style.display="";
+		}else {
+		　　document.getElementById(div_id).style.display="none";
+		}
+	}
+</script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.multiple.select.js"></script>
+	<script>
+        $('select').multipleSelect({
+        	placeholder: "Choose the ones apply"
+        });
+    </script>
 	<script src="js/cbpFWTabs.js"></script>
 
 
@@ -1494,6 +1989,5 @@ document.getElementById('state_law').value=obj.state_law;
 	<script>
 		new CBPFWTabs(document.getElementById('tabs'));
 	</script>
-
 </body>
 </html>
