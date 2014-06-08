@@ -71,7 +71,7 @@ a:hover {
 .cbp-mc-form label > span {
 	display: block;
 	position: relative;
-	z-index: 9999;
+	z-index: 10;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.5em;

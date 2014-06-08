@@ -1,7 +1,5 @@
 package control;
 
-import io.CharArrayWriterResponse;
-
 import java.io.IOException;
 
 import javax.servlet.Servlet;
@@ -25,7 +23,7 @@ import action.GenerateAction;
 @WebServlet(urlPatterns = { "*.do" }, initParams = { @WebInitParam(name = "downloadPath", value = "/Users/hidarikouzen/git/ifb/ifb/") })
 public class Controller extends HttpServlet {
 	private ActionMap actions;
-	private final String jspPath = "/WEB-INF/";
+	public static final String jspPath = "/WEB-INF/";
 
 	private static final long serialVersionUID = 1L;
 
@@ -62,50 +60,6 @@ public class Controller extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		// request.getRequestDispatcher(jspPath + "output.jsp").forward(request,
-		// response);
-
-		// String[] vals = request.getParameterValues("select");
-		// JsonBean jb = new JsonBean();
-		// if (vals != null) {
-		// jb.vals = vals;
-		// Gson json = new Gson();
-		// String json_str = json.toJson(jb);
-		// request.setAttribute("json", json_str);
-		//
-		// File file = new File("/Users/hidarikouzen/git/ifb/ifb/json");
-		// PrintWriter pw = new PrintWriter(new FileWriter(file));
-		// pw.print(json_str);
-		// pw.close();
-		//
-		// file = new File("/Users/hidarikouzen/git/ifb/ifb/json");
-		// response.setContentType("application/octet-stream");
-		// response.setContentLength(new Long(file.length()).intValue());
-		// response.addHeader("Content-Disposition", "attachment; filename="
-		// + "json");
-		//
-		// ServletOutputStream servletOutputStream = response
-		// .getOutputStream();
-		// FileInputStream fileInputStream = new FileInputStream(file);
-		// BufferedInputStream bufferedInputStream = new BufferedInputStream(
-		// fileInputStream);
-		// int size = -1;
-		// byte[] b = new byte[4096];
-		// while ((size = bufferedInputStream.read(b)) != -1) {
-		// servletOutputStream.write(b, 0, size);
-		// }
-		// servletOutputStream.flush();
-		// servletOutputStream.close();
-		// bufferedInputStream.close();
-		//
-		// }
-
-		// for (String str : vals) {
-		// System.out.println(str);
-		// }
-		// request.getRequestDispatcher(jspPath + "test.jsp").forward(request,
-		// response);
 	}
 
 	private String processRequest(HttpServletRequest request,
@@ -124,11 +78,8 @@ public class Controller extends HttpServlet {
 		if (nextStep.isEmpty()) {
 			return;
 		} else if (nextStep.endsWith(".jsp")) {
-			CharArrayWriterResponse customResponse = new CharArrayWriterResponse(
-					response);
 			request.getRequestDispatcher(jspPath + nextStep).forward(request,
-					customResponse);
-			System.out.println(customResponse.getOutput());
+					response);
 		} else if ("404".equals(nextStep)) {
 			response.sendError(404);
 		} else {

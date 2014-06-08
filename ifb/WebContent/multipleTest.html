@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/multiple-select.css" rel="stylesheet" />
+</head>
+<body>
+	<select multiple="multiple">
+		<option value="1">January</option>
+		<option value="2">Feb</option>
+		<option value="12">December</option>
+	</select>
+	<select multiple="single">
+		<option value="1">January</option>
+		<option value="2">Feb</option>
+		<option value="12">December</option>
+	</select>
+	<select single>
+		<option value="1">January</option>
+		<option value="2">Feb</option>
+		<option value="12">December</option>
+	</select>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.multiple.select.js"></script>
+	<script>
+		$('select').multipleSelect();
+	</script>
+</body>
+</html>
