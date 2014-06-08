@@ -29,7 +29,6 @@
 	cursor: pointer;
 }
 
-.cbp-mc-form input,
 .cbp-mc-form textarea,
 .cbp-mc-form select {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
@@ -41,6 +40,16 @@
 	width: 100%;
 	background: transparent;
 }
+
+.cbp-mc-form input {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	line-height: 1.5;
+	font-size: 0.75em;
+	padding: 5px 10px;
+	color: #47a3da;
+	background: transparent;
+}
+
 fieldset{
 	border: 1px solid #47a3da;
 
