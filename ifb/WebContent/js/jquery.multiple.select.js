@@ -20,7 +20,7 @@
         this.$parent = $('<div class="ms-parent"></div>');
         this.$choice = $('<button type="button" class="ms-choice"><span class="placeholder">' +
             options.placeholder + '</span><div></div></button>');
-        this.$drop = $('<div class="ms-drop ' + options.position + '"></div>');
+        this.$drop = $('<div class="ms-drop" ' + options.position + '"></div>');
         this.$el.after(this.$parent);
         this.$parent.append(this.$choice);
         this.$parent.append(this.$drop);
@@ -66,7 +66,7 @@
             if (this.options.selectAll && !this.options.single) {
                 html.push(
                     '<li>',
-                        '<label>',
+                        '<label style="font-size:2px">',
                             '<input type="checkbox" ' + this.selectAllName + ' /> ',
                             '[' + this.options.selectAllText + ']',
                         '</label>',

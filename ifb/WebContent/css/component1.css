@@ -22,7 +22,7 @@
 
 .cbp-mc-form label {
 	display: block;
-	padding: 5px 5px 5px 2px;
+	padding: 0px 5px 5px 2px;
 	font-size: 0.75em;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -46,8 +46,13 @@
 	line-height: 1.5;
 	font-size: 0.75em;
 	padding: 5px 10px;
+	margin-bottom: 10px;
 	color: #47a3da;
 	background: transparent;
+}
+
+.cbp-mc-form input[type="text"] {
+	width:350 px;
 }
 
 fieldset{

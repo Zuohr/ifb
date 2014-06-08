@@ -14,6 +14,7 @@
     width: 100%;
     height: 32px;
     padding: 0;
+    margin-bottom: 10px;
     overflow: hidden;
     cursor: pointer;
     border: 2px solid #47a3da;
@@ -55,23 +56,23 @@
     right: 0;
     width: 20px;
     height: 25px;
-    background: url('multiple-select.png') right top no-repeat;
+    background: url('../img/multiple-select.png') right top no-repeat;
 }
 
 .ms-choice > div.open {
-    background: url('multiple-select.png') left top no-repeat;
+    background: url('../img/multiple-select.png') left top no-repeat;
 }
 
 .ms-drop {
     width: 100%;
     overflow: hidden;
     display: none;
-    margin-top: -1px;
+    margin-top: -2px;
     padding: 0;
     position: absolute;
     z-index: 1000;
-    background: #ECF1F5;
-    color: #000;
+    background:  url(../img/handmadepaper.png);
+    color: #47a3da;
     border: 2px solid #47a3da;
     -moz-border-radius: 4px;
 }
@@ -117,13 +118,13 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background: #fff url('multiple-select.png') no-repeat 100% -22px;
-    background: url('multiple-select.png') no-repeat 100% -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
-    background: url('multiple-select.png') no-repeat 100% -22px, -webkit-linear-gradient(center bottom, white 85%, #eeeeee 99%);
-    background: url('multiple-select.png') no-repeat 100% -22px, -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);
-    background: url('multiple-select.png') no-repeat 100% -22px, -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
-    background: url('multiple-select.png') no-repeat 100% -22px, -ms-linear-gradient(top, #ffffff 85%, #eeeeee 99%);
-    background: url('multiple-select.png') no-repeat 100% -22px, linear-gradient(top, #ffffff 85%, #eeeeee 99%);
+    background: #fff url('../img/multiple-select.png') no-repeat 100% -22px;
+    background: url('../img/multiple-select.png') no-repeat 100% -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
+    background: url('../img/multiple-select.png') no-repeat 100% -22px, -webkit-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+    background: url('../img/multiple-select.png') no-repeat 100% -22px, -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+    background: url('../img/multiple-select.png') no-repeat 100% -22px, -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
+    background: url('../img/multiple-select.png') no-repeat 100% -22px, -ms-linear-gradient(top, #ffffff 85%, #eeeeee 99%);
+    background: url('../img/multiple-select.png') no-repeat 100% -22px, linear-gradient(top, #ffffff 85%, #eeeeee 99%);
 }
 
 .ms-search, .ms-search input {
