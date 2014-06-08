@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=utf-8" language="java"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,8 +34,7 @@
 						<div class="cpn-cell cpn-heading-left" style="height: 81px;">Why?</div>
 						<div class="cpn-cell cpn-details-right" style="height: 81px;">
 							<p>Financial companies choose how they share your personal
-								information. Under federal law, that means personally
-								identifiable information. Federal law gives consumers the right
+								information. Federal law gives consumers the right
 								to limit some but not all sharing. Federal law also requires us
 								to tell you how we collect, share, and protect your personal
 								information. Please read this notice carefully to understand
@@ -49,7 +48,7 @@
 							<p>The types of personal information we collect and share
 								depend on the product or service you have with us.</p>
 							<p>This information can include:</p>
-							<ul class="gray-sq-bullet">
+							<ul class="gray-sq-bullet" >
 								<li>Social Security number and ${what_coll["0"]}</li>
 								<li>${what_coll["1"]} and ${what_coll["2"]}</li>
 								<li>${what_coll["3"]} and ${what_coll["4"]}</li>
@@ -77,8 +76,7 @@
 				</div>
 				<div class="content-section ">
 
-					<table border="0"
-						summary="This 3-column table provides information about the reasons why Bank of America can share your personal information.">
+					<table border="0" summary="This 3-column table provides information about the reasons why Bank of America can share your personal information.">
 						<thead>
 							<tr>
 								<th scope="col">Reasons we can share your personal
@@ -118,7 +116,7 @@
 								<td>${limit_credit}</td>
 							</tr>
 							<c:choose>
-								<c:when test=${not omit_share_aff_mar}>
+								<c:when test="${not omit_share_aff_mar}">
 									<tr>
 										<td><strong>For our affiliates’ everyday business purposes </strong>— Information about your creditworthiness</td>
 										<td>${share_aff_mar}</td>
@@ -144,28 +142,26 @@
 							<div class="cpn-cell cpn-details-right" style="height: 194px;">
 								<ul class="gray-sq-bullet">
 								<c:choose>
-									<c:when test="${phone_opt}">
-									<li>Call${opt_phone} - our menu will prompt you
-										through your choices</li></c:when>
+								<c:when test="${phone_opt}">
+								<li>Call ${opt_phone} - our menu will prompt you
+									through your choices</li></c:when></c:choose>
 										
-									<c:when test="${online_opt }">
-									<li>Visit us online: <a title="privacy_overview"
-										name="privacy_overview_1"
-										href="${opt_web}"
-										target="_self">${opt_web}</a>
-									</li></c:when>
+								<c:choose><c:when test="${online_opt}">
+								<li>Visit us online: <a title="privacy_overview"
+									href="${opt_web}"
+									target="_self">${opt_web}</a>
+								</li></c:when></c:choose>
 									
-									<c:when test="${mail_opt }">
-									<li>Mail the form below</li></c:when>
+								<c:choose><c:when test="${mail_opt}">
+								<li>Mail the form below</li></c:when>
 								</c:choose>
 								</ul>
 								<p class="ptop-5">
 									<strong>Please note:</strong><br /> If you are a new customer,
 									we can begin sharing your information ${opt_num_days} days from the date we
 									sent this notice. When you are no longer our customer, we
-									continue to share your information as described in this notice.
-									However, you can contact us at any time to limit our sharing.
-								</p>
+									continue to share your information as described in this notice.</p>
+									<p>However, you can contact us at any time to limit our sharing.</p>
 							</div>
 							<div class="clearboth"></div>
 						</div>
@@ -176,7 +172,7 @@
 						<h3 class="cpn-cell cpn-heading-left" style="height: 27px;">Questions?</h3>
 						<div class="cpn-cell cpn-details-right" style="height: 27px;">
 							<p>
-								Call ${opt_phone} or go to ${opt_web}
+								Call ${opt_phone} or go to <a href="#">${opt_web}</a>
 							</p>
 						</div>
 						<div class="clearboth"></div>
@@ -184,9 +180,64 @@
 				</div>
 				
 				<c:choose>
-					<c:when test="${mail_opt_out}">
+					<c:when test="${mail_opt}">
 						<br/>
-						<!-- mail-in form here -->
+							<!-- <div class="flex-col lt-col"
+								style="margin-left: auto; margin-right: auto; width: 800px;"> -->
+								<div class="table-module">
+									<div class="consumer-privacy-notice-skin">
+										<div>
+											<h3>Mail-in Form</h3>
+										</div>
+										<div>
+											<table width="800 px" border="0">
+												<tr>
+													<td width="120 px" rowspan="6">
+													<c:choose><c:when test="${joint_acct }">
+														<p align="left">If you have a joint account,your choice(s)
+															will apply to everyone on your account unless you mark below.</p>
+														<p>&#9744; Apply my choices only to me</p>
+													</c:when></c:choose>
+													</td>
+													<td height="142" colspan="3"><p align="left">Mark any/all you want to limit:</p>
+														<p align="left">&nbsp;</p>
+															<p align="left">
+																<c:forEach var="msg" items="${mail_opt_options}">
+																	<p align="left">&#9744; ${msg }</p>
+																</c:forEach>
+															</p>
+														<p>&nbsp;</p></td>
+												</tr>
+												<tr>
+													<td width="120px">Name</td>
+													<td width="320px">&nbsp;</td>
+													<td width="110px" rowspan="5"><p>Mail to:<br/></p>
+														<p align="left">${fname}</p>
+														<p align="left">${opt_addr1},</p>
+														<p align="left">${opt_addr2},</p>
+														<p align="left">${opt_city}, ${opt_state}, ${opt_zip}</p></td>
+												</tr>
+												<tr>
+													<td rowspan="2">Address</td>
+													<td>&nbsp;</td>
+												</tr>
+												<tr>
+													<td>&nbsp;</td>
+												</tr>
+												<tr>
+													<td>City,State,Zip</td>
+													<td>&nbsp;</td>
+												</tr>
+												<tr>
+													<td>[Account #]</td>
+													<td>&nbsp;</td>
+												</tr>
+											</table>
+						
+										</div>
+									</div>
+								</div>
+							<!-- </div> -->						
 						<br/>
 					</c:when>
 				</c:choose>
@@ -297,7 +348,7 @@
 							<p>A formal agreement between nonaffiliated financial
 								companies that together market financial products or services to
 								you.</p>
-							<ul class="gray-sq-bullet">
+							<ul class="gray-sq-bullet" >
 								<li>${jmar}</li>
 							</ul>
 						</div>
@@ -313,6 +364,13 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<c:choose>
+		<c:when test="${dsp_download}">
+			<form action="export.do" method="post">
+				<input type="submit" name="download_button" value="Download">
+			</form>
+		</c:when>
+	</c:choose>
 </body>
 </html>
