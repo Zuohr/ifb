@@ -39,8 +39,6 @@ public class JsonData {
 	public String share_aff_mar_q = null;
 	public String aff_have = null;
 	public String aff_share = null;
-	public String aff_f = null;
-	public String aff_nf = null;
 	public String naff_share = null;
 	public String jamr_engage = null;
 	public String jmar_share = null;
