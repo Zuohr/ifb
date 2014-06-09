@@ -195,29 +195,30 @@
 											<table style="width: 800px;" border="0">
 												<tr>
 													<td style="width: 120px;" rowspan="6">
-													<c:choose><c:when test="${joint_acct }">
+		<div style="width: 120px;">											<c:choose><c:when test="${joint_acct }">
 														<p align="left">If you have a joint account,your choice(s)
 															will apply to everyone on your account unless you mark below.</p>
 														<p>&#9744; Apply my choices only to me</p>
 													</c:when></c:choose>
-													</td>
-													<td height="142" colspan="3"><p align="left">Mark any/all you want to limit:</p>
+</div>													</td>
+													<td colspan="3"><div style="width: 580px;"><p align="left">Mark any/all you want to limit:</p>
 														<p align="left">&nbsp;</p>
 															<p align="left">
 																<c:forEach var="msg" items="${mail_opt_options}">
 																	<p align="left">&#9744; ${msg }</p>
 																</c:forEach>
 															</p>
-														<p>&nbsp;</p></td>
+														<p>&nbsp;</p>
+                                                        </div></td>
 												</tr>
 												<tr>
 													<td style="width: 120px;">Name</td>
-													<td style="width: 320px;">&nbsp;</td>
-													<td style="width: 110px;" rowspan="5"><p>Mail to:<br/></p>
+													<td><div style="width: 320px;">&nbsp;</div></td>
+													<td rowspan="5"><div style="width: 110px;"><p>Mail to:<br/></p>
 														<p align="left">${fname}</p>
 														<p align="left">${opt_addr1},</p>
 														<p align="left">${opt_addr2},</p>
-														<p align="left">${opt_city}, ${opt_state}, ${opt_zip}</p></td>
+														<p align="left">${opt_city}, ${opt_state}, ${opt_zip}</p></div></td>
 												</tr>
 												<tr>
 													<td rowspan="2">Address</td>
