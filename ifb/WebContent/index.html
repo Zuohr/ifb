@@ -49,13 +49,13 @@ body {
 			<nav>
 				<ul>
 					<li id="nav_1"><a href="#section-1" class="icon-shop"><span>Home</span></a></li>
-					<li><a href="#section-2" class="icon-cup"><span>Privacy
-								Notice</span></a></li>
-					<li><a href="#section-3" class="icon-lab"><span>Policy
-								Generator</span></a></li>
-
 					<li id="nav_4"><a href="#section-4" class="icon-truck"><span>Policy
 								Generator 2.0</span></a></li>
+					<li><a href="#section-2" class="icon-cup"><span>Privacy
+								Notice</span></a></li>
+					<!--<li><a href="#section-3" class="icon-lab"><span>Policy
+								Generator</span></a></li>-->
+
 				</ul>
 			</nav>
 			<div class="content">
@@ -66,7 +66,7 @@ body {
 						<h4 align="center">An Interactive Form Builder for Financial
 							Institution</h4>
 						<div>
-							<button
+							<button type="button"
 								onclick="changeTab('nav_1','nav_4','section-1','section-4')">
 								<a href="#section-4">Policy Generator 2.0</a>
 							</button>
@@ -78,8 +78,7 @@ body {
         document.getElementById(nav_id_1).className="";
         document.getElementById(nav_id_4).className="tab-current";
         document.getElementById(divId).className="";
-        document.getElementById(nav_id_4).className="content-current";
-        alert("asd");
+        document.getElementById(tar_divId).className="content-current";
     }
 </script>
 
