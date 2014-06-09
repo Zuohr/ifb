@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Online opt-out</title>
-<link rel="stylesheet" type="text/css" href="pbi-web-ps-jawr.css"
+<link rel="stylesheet" type="text/css" href="privacy_notice_style.css"
 	media="all">
 <style type="text/css">
 #child0 {
