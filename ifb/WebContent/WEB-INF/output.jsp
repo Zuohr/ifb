@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Privacy notice</title>
-<link rel="stylesheet" type="text/css" href="css/pbi-web-ps-jawr.css" media="all" />
+<link rel="stylesheet" type="text/css" href="${css_pos}privacy_notice_style.css" media="all" />
 </head>
 
 <body>

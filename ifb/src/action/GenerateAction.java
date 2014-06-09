@@ -3,9 +3,11 @@ package action;
 import io.CharArrayWriterResponse;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -381,15 +383,19 @@ public class GenerateAction implements Action {
 		}
 		request.setAttribute("other_info", other_info.toString());
 
-		request.setAttribute("dsp_download", false);
-		
 		/**
 		 * generate files
 		 */
+		request.setAttribute("dsp_download", false);
+		
+		request.setAttribute("css_pos", "css/");
+		
 		generateFiles(request, response, json, online_opt_out);
 
 		compress(request);
 
+		request.setAttribute("css_pos", "");
+		
 		request.setAttribute("dsp_download", true);
 
 		return "output.jsp";
@@ -398,7 +404,7 @@ public class GenerateAction implements Action {
 
 	private void generateFiles(HttpServletRequest request,
 			HttpServletResponse response, JsonData json,
-			boolean attach_online_opt_out) throws Exception {
+			boolean online_opt_out) throws Exception {
 		File targetDir = new File(downloadPath + request.getSession().getId());
 		if (targetDir.exists()) {
 			for (File file : targetDir.listFiles()) {
@@ -413,7 +419,25 @@ public class GenerateAction implements Action {
 				"config.json")));
 		pw.write(new Gson().toJson(json));
 		pw.close();
-
+		
+		if (online_opt_out) {
+			CharArrayWriterResponse customResponse = new CharArrayWriterResponse(response);
+			request.getRequestDispatcher(Controller.jspPath + "Online OPT-OUT Form.jsp")
+				.forward(request, customResponse);
+			pw = new PrintWriter(new FileWriter(new File(targetDir, "online_opt_out_form.html")));
+			pw.write(customResponse.getOutput());
+			pw.close();
+		}
+		
+		BufferedReader br = new BufferedReader(new FileReader(new File(downloadPath + "privacy_notice_style.css")));
+		pw = new PrintWriter(new FileWriter(new File(targetDir, "privacy_notice_style.css")));
+		String line;
+		while ((line = br.readLine()) != null) {
+			pw.println(line);
+		}
+		pw.close();
+		br.close();
+		
 		CharArrayWriterResponse customResponse = new CharArrayWriterResponse(
 				response);
 		request.getRequestDispatcher(Controller.jspPath + "output.jsp")
