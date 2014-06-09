@@ -14,8 +14,11 @@
 		style="margin-left: auto; margin-right: auto; width: 800px">
 
 		<div class="table-module">
+        <br>
+        <br>
 			<p style="float: right">${rev_date}</p>
 			<div class="consumer-privacy-notice-skin">
+
 				<h2 class="h2-fsd-red">${fname}</h2>
 				<div class="content-section left-heading">
 
@@ -42,12 +45,12 @@
 						<div class="clearboth"></div>
 					</div>
 					<div class="content-row">
-						<div class="cpn-cell cpn-heading-left" style="height: 153px;">What?</div>
-						<div class="cpn-cell cpn-details-right" style="height: 153px;">
+						<div class="cpn-cell cpn-heading-left" style="height: 200px;">What?</div>
+						<div class="cpn-cell cpn-details-right" style="height: 200px;">
 							<p>The types of personal information we collect and share
 								depend on the product or service you have with us.</p>
 							<p>This information can include:</p>
-							<ul class="gray-sq-bullet" >
+							<ul type="square">
 								<li>Social Security number and ${what_coll["0"]}</li>
 								<li>${what_coll["1"]} and ${what_coll["2"]}</li>
 								<li>${what_coll["3"]} and ${what_coll["4"]}</li>
@@ -139,7 +142,7 @@
 							<h3 class="cpn-cell cpn-heading-left" style="height: 194px;">To
 								limit our sharing</h3>
 							<div class="cpn-cell cpn-details-right" style="height: 194px;">
-								<ul class="gray-sq-bullet">
+								<ul type="square">
 								<c:choose>
 								<c:when test="${phone_opt}">
 								<li>Call ${opt_phone} - our menu will prompt you
@@ -189,9 +192,9 @@
 											<h3>Mail-in Form</h3>
 										</div>
 										<div>
-											<table width="800 px" border="0">
+											<table style="width: 800px;" border="0">
 												<tr>
-													<td width="120 px" rowspan="6">
+													<td style="width: 120px;" rowspan="6">
 													<c:choose><c:when test="${joint_acct }">
 														<p align="left">If you have a joint account,your choice(s)
 															will apply to everyone on your account unless you mark below.</p>
@@ -208,9 +211,9 @@
 														<p>&nbsp;</p></td>
 												</tr>
 												<tr>
-													<td width="120px">Name</td>
-													<td width="320px">&nbsp;</td>
-													<td width="110px" rowspan="5"><p>Mail to:<br/></p>
+													<td style="width: 120px;">Name</td>
+													<td style="width: 320px;">&nbsp;</td>
+													<td style="width: 110px;" rowspan="5"><p>Mail to:<br/></p>
 														<p align="left">${fname}</p>
 														<p align="left">${opt_addr1},</p>
 														<p align="left">${opt_addr2},</p>
@@ -282,7 +285,7 @@
 						<div class="cpn-cell cpn-details">
 							<p>We collect your personal information, for example, when
 								you:</p>
-							<ul class="gray-sq-bullet">
+							<ul type="square">
 								<li>${how_coll["0"]} or ${how_coll["1"]}</li>
 								<li>${how_coll["2"]} or ${how_coll["3"]}</li>
 								<li>${how_coll["4"]}</li>
@@ -296,7 +299,7 @@
 							sharing?</div>
 						<div class="cpn-cell cpn-details">
 							<p>Federal law gives you the right to limit only</p>
-							<ul class="gray-sq-bullet">
+							<ul type="square">
 								<li>sharing affiliates' everyday business purposes—information
 									about your creditworthiness</li>
 								<li>affiliates from using your information to market to you
@@ -331,7 +334,7 @@
 						<div class="cpn-cell cpn-details">
 							<p>Companies related by common ownership or control. They can
 								be Financial and nonfinancial companies.</p>
-							<ul class="gray-sq-bullet">
+							<ul type="square">
 								<li>${aff}</li>
 							</ul>
 						</div>
@@ -342,7 +345,7 @@
 						<div class="cpn-cell cpn-details">
 							<p>Companies not related by common ownership or control. They
 								can be Financial and nonfinancial companies.</p>
-							<ul class="gray-sq-bullet">
+							<ul type="square">
 								<li>${naff}</li>
 							</ul>
 						</div>
@@ -354,7 +357,7 @@
 							<p>A formal agreement between nonaffiliated financial
 								companies that together market financial products or services to
 								you.</p>
-							<ul class="gray-sq-bullet" >
+							<ul type="square">
 								<li>${jmar}</li>
 							</ul>
 						</div>
@@ -362,8 +365,16 @@
 					</div>
 				</div>
 				<div class="content-section cpn-one-col">
-					<h3>Other important information</h3>
+				  <h3>Other important information</h3>
 					<p>${other_info}</p>
+              <br>      
+             	<c:choose>
+					<c:when test="${dsp_download}">
+						<form action="export.do" method="post" class="ss-first-col">
+							<input type="submit" name="download_button" value="Download" style=" margin-left:340px;width:120px; height:40px">
+						</form>
+					</c:when>
+				</c:choose>
 				</div>
 				
 				<div class="content-section left-rev"></div>
@@ -371,12 +382,6 @@
 		</div>
 	</div>
 	
-	<c:choose>
-		<c:when test="${dsp_download}">
-			<form action="export.do" method="post">
-				<input type="submit" name="download_button" value="Download">
-			</form>
-		</c:when>
-	</c:choose>
+	
 </body>
 </html>

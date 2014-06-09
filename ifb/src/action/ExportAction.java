@@ -22,6 +22,10 @@ public class ExportAction implements Action {
 	public String perform(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		File dir = new File(downloadPath + request.getSession().getId());
+		if (!dir.exists()) {
+			return "";
+		}
+		
 		String zipFileName = "privacy_form.zip";
 
 		File downLoadfile = new File(dir, zipFileName);
@@ -42,6 +46,12 @@ public class ExportAction implements Action {
 		sos.flush();
 		sos.close();
 		bis.close();
+		
+		File[] files = dir.listFiles();
+		for (File file : files) {
+			file.delete();
+		}
+		dir.delete();
 
 		return "";
 	}

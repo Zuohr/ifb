@@ -386,13 +386,13 @@ public class GenerateAction implements Action {
 		/**
 		 * generate files
 		 */
-		request.setAttribute("dsp_download", false);
-		
-		request.setAttribute("css_pos", "");
-		
-		generateFiles(request, response, json, online_opt_out);
-
-		compress(request);
+//		request.setAttribute("dsp_download", false);
+//		
+//		request.setAttribute("css_pos", "");
+//		
+//		generateFiles(request, response, json, online_opt_out);
+//
+//		compress(request);
 
 		request.setAttribute("css_pos", "css/");
 		
