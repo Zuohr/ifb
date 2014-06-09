@@ -386,13 +386,13 @@ public class GenerateAction implements Action {
 		/**
 		 * generate files
 		 */
-//		request.setAttribute("dsp_download", false);
-//		
-//		request.setAttribute("css_pos", "");
-//		
-//		generateFiles(request, response, json, online_opt_out);
-//
-//		compress(request);
+		request.setAttribute("dsp_download", false);
+		
+		request.setAttribute("css_pos", "");
+		
+		generateFiles(request, response, json, online_opt_out);
+
+		compress(request);
 
 		request.setAttribute("css_pos", "css/");
 		
@@ -405,15 +405,7 @@ public class GenerateAction implements Action {
 	private void generateFiles(HttpServletRequest request,
 			HttpServletResponse response, JsonData json,
 			boolean online_opt_out) throws Exception {
-		File targetDir = new File(downloadPath + request.getSession().getId());
-		if (targetDir.exists()) {
-			for (File file : targetDir.listFiles()) {
-				file.delete();
-			}
-			targetDir.delete();
-			targetDir = new File(downloadPath + request.getSession().getId());
-		}
-		targetDir.mkdir();
+		File targetDir = new File(downloadPath);
 
 		PrintWriter pw = new PrintWriter(new FileWriter(new File(targetDir,
 				"config.json")));
@@ -429,14 +421,14 @@ public class GenerateAction implements Action {
 			pw.close();
 		}
 		
-		BufferedReader br = new BufferedReader(new FileReader(new File(downloadPath + "privacy_notice_style.css")));
-		pw = new PrintWriter(new FileWriter(new File(targetDir, "privacy_notice_style.css")));
-		String line;
-		while ((line = br.readLine()) != null) {
-			pw.println(line);
-		}
-		pw.close();
-		br.close();
+//		BufferedReader br = new BufferedReader(new FileReader(new File(downloadPath + "privacy_notice_style.css")));
+//		pw = new PrintWriter(new FileWriter(new File(targetDir, "privacy_notice_style.css")));
+//		String line;
+//		while ((line = br.readLine()) != null) {
+//			pw.println(line);
+//		}
+//		pw.close();
+//		br.close();
 		
 		CharArrayWriterResponse customResponse = new CharArrayWriterResponse(
 				response);
@@ -447,9 +439,55 @@ public class GenerateAction implements Action {
 		pw.write(customResponse.getOutput());
 		pw.close();
 	}
+	
+//	private void generateFiles(HttpServletRequest request,
+//			HttpServletResponse response, JsonData json,
+//			boolean online_opt_out) throws Exception {
+//		File targetDir = new File(downloadPath + request.getSession().getId());
+//		if (targetDir.exists()) {
+//			for (File file : targetDir.listFiles()) {
+//				file.delete();
+//			}
+//			targetDir.delete();
+//			targetDir = new File(downloadPath + request.getSession().getId());
+//		}
+//		targetDir.mkdirs();
+//
+//		PrintWriter pw = new PrintWriter(new FileWriter(new File(targetDir,
+//				"config.json")));
+//		pw.write(new Gson().toJson(json));
+//		pw.close();
+//		
+//		if (online_opt_out) {
+//			CharArrayWriterResponse customResponse = new CharArrayWriterResponse(response);
+//			request.getRequestDispatcher(Controller.jspPath + "Online OPT-OUT Form.jsp")
+//				.forward(request, customResponse);
+//			pw = new PrintWriter(new FileWriter(new File(targetDir, "online_opt_out_form.html")));
+//			pw.write(customResponse.getOutput());
+//			pw.close();
+//		}
+//		
+//		BufferedReader br = new BufferedReader(new FileReader(new File(downloadPath + "privacy_notice_style.css")));
+//		pw = new PrintWriter(new FileWriter(new File(targetDir, "privacy_notice_style.css")));
+//		String line;
+//		while ((line = br.readLine()) != null) {
+//			pw.println(line);
+//		}
+//		pw.close();
+//		br.close();
+//		
+//		CharArrayWriterResponse customResponse = new CharArrayWriterResponse(
+//				response);
+//		request.getRequestDispatcher(Controller.jspPath + "output.jsp")
+//				.forward(request, customResponse);
+//		pw = new PrintWriter(new FileWriter(new File(targetDir,
+//				"privacy_notice.html")));
+//		pw.write(customResponse.getOutput());
+//		pw.close();
+//	}
 
 	private void compress(HttpServletRequest request) throws Exception {
-		String dirName = downloadPath + request.getSession().getId();
+		String dirName = downloadPath;
 		File dir = new File(dirName);
 		File[] files = dir.listFiles();
 		String zipFileName = "privacy_form.zip";

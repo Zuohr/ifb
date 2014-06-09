@@ -21,7 +21,7 @@ import action.GenerateAction;
  * Servlet implementation class Controller
  */
 //@WebServlet(urlPatterns = { "*.do" }, initParams = { @WebInitParam(name = "downloadPath", value = "/Users/hidarikouzen/git/ifb/ifb/") })
-@WebServlet(urlPatterns = { "*.do" }, initParams = { @WebInitParam(name = "downloadPath", value = "/home/ubuntu/") })
+@WebServlet(urlPatterns = { "*.do" }, initParams = { @WebInitParam(name = "downloadPath", value = "/home/ubuntu/folder/") })
 public class Controller extends HttpServlet {
 	private ActionMap actions;
 	public static final String jspPath = "/WEB-INF/";
