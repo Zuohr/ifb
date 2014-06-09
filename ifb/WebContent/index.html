@@ -932,7 +932,7 @@ document.getElementById('state_law').value=obj.state_law;
 					Read bytes: <span class="readBytesButtons">
 						<button type="button">Import</button>
 					</span>
-					<script>
+						<script>
 						function readBlob(opt_startByte, opt_stopByte) {
 
 							var files = document.getElementById('files').files;
@@ -953,15 +953,432 @@ document.getElementById('state_law').value=obj.state_law;
 									var json = evt.target.result;
 									obj = JSON.parse(json);
 									document.getElementById('fname').value = obj.fname;
-									document.getElementById('who_we_are').value = obj.who_we_are;
-									for ( var i in obj.opt_scheme) {
-										//var counter = obj.opt_scheme[i];
-										//console.log(obj.opt_scheme[i]);
-										for (var j = 0; j < opt_scheme.options.length; ++j) {
-											if (opt_scheme.options[j].value === obj.opt_scheme[i])
-												opt_scheme.options[j].selected = true;
+									var radios = document.getElementsByName('selectItemname_identified');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.name_identified)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < name_identified.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (name_identified.options[j1].value === obj.name_identified){
+												name_identified.options[j1].selected = true;
+												var span = document.getElementsByClassName("placeholder")[0];
+												span.innerHTML=obj.name_identified;
+												if(obj.name_identified==="No")
+												change_display('fnames');
+												}
 										}
-									}
+									document.getElementById('who_we_are').value = obj.who_we_are;
+
+									radios = document.getElementsByName('selectItemopt_scheme');
+								   span = document.getElementsByClassName("placeholder")[1];
+								   span.innerHTML="";
+for (var h = 0, length = radios.length; h < length; h++) {
+for ( var i in obj.opt_scheme) {
+if(radios[h].value ===obj.opt_scheme[i])
+radios[h].checked=true;
+}
+}
+for (var h1 = 0, length = opt_schema.options.length; h1 < length; h1++) {
+for ( var i in obj.opt_scheme) {
+if(opt_schema.options[h1].value ===obj.opt_scheme[i]){
+opt_schema.options[h1].selected=true;
+span.innerHTML+=obj.opt_scheme[i]+", ";
+}
+}
+}
+multichange_display('opt_schema');
+
+								radios = document.getElementsByName('selectItemopt_collect_schema');
+								   span = document.getElementsByClassName("placeholder")[2];
+								   span.innerHTML="";
+for (var h = 0, length = radios.length; h < length; h++) {
+for ( var i in obj.opt_collect_schema) {
+if(radios[h].value ===obj.opt_collect_schema[i])
+radios[h].checked=true;
+}
+}
+for (var h1 = 0, length = opt_collect_schema.options.length; h1 < length; h1++) {
+for ( var i in obj.opt_collect_schema) {
+if(opt_collect_schema.options[h1].value ===obj.opt_collect_schema[i]){
+opt_collect_schema.options[h1].selected=true;
+span.innerHTML+=opt_collect_schema.options[h1].text+", ";
+}
+}
+}
+
+ radios = document.getElementsByName('selectItemopt_state');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.opt_state)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < opt_state.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (opt_state.options[j1].value === obj.opt_state){
+												opt_state.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[3];
+												span.innerHTML=obj.opt_state;
+												}
+										}
+
+ radios = document.getElementsByName('selectItemjoint_acct');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.joint_acct)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < joint_acct.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (joint_acct.options[j1].value === obj.joint_acct){
+												joint_acct.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[4];
+												span.innerHTML=obj.joint_acct;
+												}
+										}
+
+								  radios = document.getElementsByName('selectItemhow_coll');
+								   span = document.getElementsByClassName("placeholder")[5];
+								   span.innerHTML="";
+for (var h = 0, length = radios.length; h < length; h++) {
+for ( var i in obj.how_coll) {
+if(radios[h].value ===obj.how_coll[i])
+radios[h].checked=true;
+}
+}
+for (var h1 = 0, length = how_coll.options.length; h1 < length; h1++) {
+for ( var i in obj.how_coll) {
+if(how_coll.options[h1].value ===obj.how_coll[i]){
+how_coll.options[h1].selected=true;
+span.innerHTML+=how_coll.options[h1].text+", ";
+}
+}
+}
+
+					  radios = document.getElementsByName('selectItemwhat_coll');
+								   var span1 = document.getElementsByTagName("span");
+								   for (var i=0; i<span1.length; i++) {
+    if(span1[i].textContent==" SSN")
+	span=span1[i];
+}
+								   span.innerHTML="";
+for (var h = 0, length = radios.length; h < length; h++) {
+for ( var i in obj.what_coll) {
+if(radios[h].value ===obj.what_coll[i])
+radios[h].checked=true;
+}
+}
+for (var h1 = 0, length = what_coll.options.length; h1 < length; h1++) {
+for ( var i in obj.what_coll) {
+if(what_coll.options[h1].value ===obj.what_coll[i]){
+what_coll.options[h1].selected=true;
+span.innerHTML+=what_coll.options[h1].text+", ";
+}
+}
+}
+
+radios = document.getElementsByName('selectItemother_src');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.other_src)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < other_src.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (other_src.options[j1].value === obj.other_src){
+												other_src.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[6];
+												span.innerHTML=other_src.options[j1].text;
+												}
+										}
+										
+										
+										radios = document.getElementsByName('selectItemshare_eday');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.share_eday)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < share_eday.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (share_eday.options[j1].value === obj.share_eday){
+												share_eday.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[7];
+												span.innerHTML=share_eday.options[j1].text;
+												}
+										}
+										
+									radios = document.getElementsByName('selectItemshare_mar');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.share_mar)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < share_mar.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (share_mar.options[j1].value === obj.share_mar){
+												share_mar.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[8];
+												span.innerHTML=share_mar.options[j1].text;
+												}
+										}
+										
+								radios = document.getElementsByName('selectItemshare_joint');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.share_joint)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < share_joint.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (share_joint.options[j1].value === obj.share_joint){
+												share_joint.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[9];
+												span.innerHTML=share_joint.options[j1].text;
+												}
+										}
+										
+										radios = document.getElementsByName('selectItemshare_aff');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.share_aff)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < share_aff.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (share_aff.options[j1].value === obj.share_aff){
+												share_aff.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[10];
+												span.innerHTML=share_aff.options[j1].text;
+												}
+										}
+										
+											radios = document.getElementsByName('selectItemshare_credit');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.share_credit)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < share_credit.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (share_credit.options[j1].value === obj.share_credit){
+												share_credit.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[11];
+												span.innerHTML=share_credit.options[j1].text;
+												}
+										}
+										
+	radios = document.getElementsByName('selectItemshare_aff_mar_q');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.share_aff_mar_q)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < share_aff_mar_q.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (share_aff_mar_q.options[j1].value === obj.share_aff_mar_q){
+												share_aff_mar_q.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[12];
+												span.innerHTML=share_aff_mar_q.options[j1].text;
+												}
+											if(obj.share_aff_mar_q==="No"){
+											change_display1('share_aff_mar_q','share_aff_ques',false);
+											}	
+										}
+										
+										radios = document.getElementsByName('selectItemshare_aff_mar');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.share_aff_mar)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < share_aff_mar.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (share_aff_mar.options[j1].value === obj.share_aff_mar){
+												share_aff_mar.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[13];
+												span.innerHTML=share_aff_mar.options[j1].text;
+												}
+										}
+										
+										radios = document.getElementsByName('selectItemshare_non_aff_mar');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.share_non_aff_mar)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < share_non_aff_mar.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (share_non_aff_mar.options[j1].value === obj.share_non_aff_mar){
+												share_non_aff_mar.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[14];
+												span.innerHTML=share_non_aff_mar.options[j1].text;
+												}
+										}
+										
+																				radios = document.getElementsByName('selectItemaff_have');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.aff_have)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < aff_have.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (aff_have.options[j1].value === obj.aff_have){
+												aff_have.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[15];
+												span.innerHTML=aff_have.options[j1].text;
+												//if(obj.aff_have==="yes")
+												
+												}
+										}
+										change_display1('aff_have','aff_have_selected',true);
+										
+											radios = document.getElementsByName('selectItemaff_share');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.aff_share)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < aff_share.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (aff_share.options[j1].value === obj.aff_share){
+												aff_share.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[16];
+												span.innerHTML=aff_share.options[j1].text;
+											//	if(obj.aff_share==="yes")
+												}
+										}
+										change_display1('aff_share','aff_share_selected',true);
+												
+										
+									radios = document.getElementsByName('selectItemnaff_share');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.naff_share)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < naff_share.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (naff_share.options[j1].value === obj.naff_share){
+												naff_share.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[17];
+												span.innerHTML=naff_share.options[j1].text;
+												//if(obj.naff_share==="yes")
+                                                }
+										}
+change_display1('naff_share','naff_share_selected',true);
+												
+									radios = document.getElementsByName('selectItemjamr_engage');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.jamr_engage)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < jamr_engage.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (jamr_engage.options[j1].value === obj.jamr_engage){
+												jamr_engage.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[18];
+												span.innerHTML=jamr_engage.options[j1].text;
+												//if(obj.jamr_engage==="yes")
+												}
+										}
+										change_display1('jamr_engage','jmar_engage_selected',true);
+
+										
+							radios = document.getElementsByName('selectItemjmar_share');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.jmar_share)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < jmar_share.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (jmar_share.options[j1].value === obj.jmar_share){
+												jmar_share.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[19];
+												span.innerHTML=jmar_share.options[j1].text;
+												//if(obj.jmar_share==="yes")
+												}
+										}
+										change_display1('jmar_share','jmar_share_selected',true);
+
+													
+							radios = document.getElementsByName('selectItemother_law');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.other_law)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < other_law.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (other_law.options[j1].value === obj.other_law){
+												other_law.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[20];
+												span.innerHTML=other_law.options[j1].text;
+												//if(obj.jmar_share==="yes")
+												}
+										}
+										change_display1('other_law','other_law_selected',true);
+										
+													
+							radios = document.getElementsByName('selectItemother_ack');
+
+for (var h = 0, length = radios.length; h < length; h++) {
+if(radios[h].value ===obj.other_ack)
+radios[h].checked=true;
+}
+
+                                      
+										for (var j1 = 0; j1 < other_ack.options.length; ++j1) {
+										//alert(name_identified.options[j1].value+" "+obj.name_identified);
+											if (other_ack.options[j1].value === obj.other_ack){
+												other_ack.options[j1].selected = true;
+												span = document.getElementsByClassName("placeholder")[21];
+												span.innerHTML=other_ack.options[j1].text;
+												//if(obj.jmar_share==="yes")
+												}
+										}
+										change_display1('other_ack','other_ack_selected',true);
+										
 									for ( var k in obj.what_coll) {
 										//var counter = obj.opt_scheme[i];
 										console.log(obj.what_coll[k]);
@@ -980,21 +1397,19 @@ document.getElementById('state_law').value=obj.state_law;
 												how_coll.options[j].selected = true;
 										}
 									}
-
+									
+document.getElementById('other_law_detail').value = obj.other_law_detail;
+document.getElementById('other_ack_detail').value = obj.other_ack_detail;
 									document.getElementById('opt_num_days').value = obj.opt_num_days;
 									document.getElementById('joint_acct').value = obj.joint_acct;
 									document.getElementById('opt_phone').value = obj.opt_phone;
-									document.getElementById('opt_addr1').value = obj.opt_addr1;
-									document.getElementById('opt_addr2').value = obj.opt_addr2;
+									document.getElementById('opt_add1').value = obj.opt_addr1;
+									document.getElementById('opt_add2').value = obj.opt_addr2;
 									document.getElementById('opt_web').value = obj.opt_web;
 									document.getElementById('opt_city').value = obj.opt_city;
 									document.getElementById('opt_zip').value = obj.opt_zip;
 									document.getElementById('opt_state').value = obj.opt_state;
-									document.getElementById('mail_opt_out_1').value = obj.mail_opt_out_1;
-									document.getElementById('mail_opt_out_2').value = obj.mail_opt_out_2;
-									document.getElementById('mail_opt_out_3').value = obj.mail_opt_out_3;
-									document.getElementById('mail_opt_out_4').value = obj.mail_opt_out_4;
-									document.getElementById('mail_opt_out_5').value = obj.mail_opt_out_5;
+									
 
 									document.getElementById('other_src').value = obj.other_src;
 									document.getElementById('protect').value = obj.protect;
@@ -1009,8 +1424,7 @@ document.getElementById('state_law').value=obj.state_law;
 									document.getElementById('aff').value = obj.aff;
 									document.getElementById('naff').value = obj.naff;
 									document.getElementById('jmar').value = obj.jmar;
-									document.getElementById('other_info').value = obj.other_info;
-									document.getElementById('state_law').value = obj.state_law;
+									
 
 									[ 'Read bytes: ', start + 1, ' - ',
 											stop + 1, ' of ', file.size,
@@ -1186,9 +1600,65 @@ document.getElementById('state_law').value=obj.state_law;
 											style="display: inline;" class="bp-icon bp-icon-about"
 											data-content="Postal Mail's State to perform opt out."></span>
 										</label> <select required="required" id="opt_state" name="opt_state">
-											<option>Ohio</option>
-											<option>Pennsylvania</option>
-											<option>Texas</option>
+											<option value="AK">Alaska</option>
+													<option value="AL">Alabama</option>
+													<option value="AR">Arkansas</option>
+													<option value="AS">American Samoa</option>
+													<option value="AZ">Arizona</option>
+													<option value="CA">California</option>
+													<option value="CO">Colorado</option>
+													<option value="CT">Connecticut</option>
+													<option value="DC">Washington D.C.</option>
+													<option value="DE">Delaware</option>
+													<option value="FL">Florida</option>
+													<option value="FM">Federated States of Micronesia</option>
+													<option value="GA">Georgia</option>
+													<option value="GU">Guam</option>
+													<option value="HI">Hawaii</option>
+													<option value="IA">Iowa</option>
+													<option value="ID">Idaho</option>
+													<option value="IL">Illinois</option>
+													<option value="IN">Indiana</option>
+													<option value="KS">Kansas</option>
+													<option value="KY">Kentucky</option>
+													<option value="LA">Louisiana</option>
+													<option value="MA">Massachusetts</option>
+													<option value="MD">Maryland</option>
+													<option value="ME">Maine</option>
+													<option value="MH">Marshall Islands</option>
+													<option value="MI">Michigan</option>
+													<option value="MN">Minnesota</option>
+													<option value="MO">Missouri</option>
+													<option value="MP">Northern Mariana Islands</option>
+													<option value="MS">Mississippi</option>
+													<option value="MT">Montana</option>
+													<option value="NC">North Carolina</option>
+													<option value="ND">North Dakota</option>
+													<option value="NE">Nebraska</option>
+													<option value="NH">New Hampshire</option>
+													<option value="NJ">New Jersey</option>
+													<option value="NM">New Mexico</option>
+													<option value="NV">Nevada</option>
+													<option value="NY">New York</option>
+													<option value="OH">Ohio</option>
+													<option value="OK">Oklahoma</option>
+													<option value="OR">Oregon</option>
+													<option value="PA">Pennsylvania</option>
+													<option value="PR">Puerto Rico</option>
+													<option value="PW">Palau</option>
+													<option value="RI">Rhode Island</option>
+													<option value="SC">South Carolina</option>
+													<option value="SD">South Dakota</option>
+													<option value="TN">Tennessee</option>
+													<option value="TX">Texas</option>
+													<option value="UT">Utah</option>
+													<option value="VA">Virginia</option>
+													<option value="VI">Virgin Islands</option>
+													<option value="VT">Vermont</option>
+													<option value="WA">Washington</option>
+													<option value="WI">Wisconsin</option>
+													<option value="WV">West Virginia</option>
+													<option value="WY">Wyoming</option>
 										</select> <label for="email">Zip &nbsp; <span
 											style="display: inline;" class="bp-icon bp-icon-about"
 											data-content="Postal Mail's Zip code to perform opt out."></span>
